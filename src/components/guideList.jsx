@@ -1,88 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Tabs, List, Pagination } from "antd";
-import { db } from "../firebase"; // Replace with your Firebase configuration and setup
-
-const GUIDES_PER_PAGE = 10; // Number of guides to fetch per page
-
-const getGuidesByStatus = async (status, page) => {
-	try {
-		const guidesRef = db.collection("guides");
-		const guidesQuery = guidesRef
-			.where("status", "==", status)
-			.orderBy("createdAt", "desc") // Assuming guides have a createdAt timestamp
-			.limit(GUIDES_PER_PAGE)
-			.offset((page - 1) * GUIDES_PER_PAGE);
-
-		const snapshot = await guidesQuery.get();
-		const guides = [];
-		snapshot.forEach((doc) => {
-			const guide = doc.data();
-			guides.push({
-				id: doc.id,
-				...guide,
-			});
-		});
-
-		return guides;
-	} catch (error) {
-		throw new Error("Error fetching guides:", error);
-	}
-};
+import React from "react";
+import { Tabs, Card } from "antd";
 
 const { TabPane } = Tabs;
 
-const Guides = () => {
-    const [selectedTab, setSelectedTab] = useState("1");
-	const [current, setCurrent] = useState(1);
-	const [totalGuides, setTotalGuides] = useState(0);
-	const [guides, setGuides] = useState([]);
+const usersData = [
+	{ id: 1, name: "User 1", role: "Active" },
+	{ id: 2, name: "User 2", role: "Pending" },
+	{ id: 3, name: "User 3", role: "Suspended" },
+	// Add more users as needed
+];
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const { guides, totalGuides } = await getGuidesByStatus(
-					"active",
-					current
-				);
-				setGuides(guides);
-				setTotalGuides(totalGuides);
-			} catch (error) {
-				console.error("Error fetching guides:", error);
-			}
-		};
+const filterUsersByRole = (role) => {
+	return usersData.filter((user) => user.role === role);
+};
 
-		fetchData();
-	}, [current]);
-
-	const onChange = (page) => {
-		setCurrent(page);
-	};
-	const handleTabChange = (key) => {
-		setSelectedTab(key);
-		setCurrentPage(1); // Reset to the first page when changing tabs
-	};
-
+const renderTabPane = (status) => {
+	const users = filterUsersByRole(status);
 	return (
-		<div>
-			<Tabs defaultActiveKey={selectedTab} centered onChange={handleTabChange}>
-				{/* ... TabPanels ... */}
-			</Tabs>
-			<div>
-				<List
-					dataSource={guides}
-					renderItem={(item) => (
-						<List.Item key={item.id}>{item.name}</List.Item>
-					)}
-				/>
-				<Pagination
-					current={current}
-					onChange={onChange}
-					total={totalGuides}
-					pageSize={GUIDES_PER_PAGE}
-				/>
-			</div>
-		</div>
+		<TabPane tab={status} key={status.toLowerCase()}>
+			{users.map((user) => (
+				<Card key={user.id} style={{ marginBottom: 10 }}>
+					{user.name}
+				</Card>
+			))}
+		</TabPane>
 	);
 };
 
-export default Guides;
+const Guide = () => (
+	<Tabs defaultActiveKey="active" centered>
+		{["Active", "Pending", "Suspended"].map((status) => renderTabPane(status))}
+	</Tabs>
+);
+
+export default Guide;
