@@ -4,7 +4,7 @@ import ConsultantsCard from "./ConsultantsCard";
 const Consultants = () => {
   const [consultants, setConsultants] = useState([]);
   useEffect(() => {
-    fetch("consultants.json")
+    fetch("http://localhost:5000/consultants")
       .then((res) => res.json())
       .then((data) => setConsultants(data));
   }, []);
@@ -12,7 +12,7 @@ const Consultants = () => {
     <div className="grid grid-cols-5">
       {consultants.map((consultant) => (
         <ConsultantsCard
-          key={consultant.id}
+          key={consultant._id}
           consultant={consultant}
         ></ConsultantsCard>
       ))}

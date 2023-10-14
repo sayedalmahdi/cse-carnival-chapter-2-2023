@@ -1,15 +1,27 @@
+import { useContext } from "react";
+import {
+  FaHome,
+  FaRegAddressBook,
+  FaRegCalendarCheck,
+  FaUsers,
+} from "react-icons/fa";
+import { SiGoogleclassroom } from "react-icons/si";
+import { Link, Outlet } from "react-router-dom";
+import { RingLoader } from "react-spinners";
 import { ToastContainer } from "react-toastify";
 import useAdmin from "../hooks/useAdmin";
-import NavigationBar from "../pages/Shared/NavigationBar/NavigationBar";
 import useConsultant from "../hooks/useConsultant";
-import { Link, Outlet } from "react-router-dom";
-import { FaHome, FaRegAddressBook, FaRegCalendarCheck, FaUsers } from "react-icons/fa";
-import { SiGoogleclassroom } from "react-icons/si";
+import NavigationBar from "../pages/Shared/NavigationBar/NavigationBar";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Dashboard = () => {
+  const { loading } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [isConsultant] = useConsultant();
   const isCustomer = isAdmin == true || isConsultant == true ? false : true;
+  if (loading) {
+    return <RingLoader color="#36d7b7" className="text-center my-24" />;
+  }
   return (
     <div className="bg-white dark:bg-slate-800">
       <ToastContainer />
@@ -41,7 +53,7 @@ const Dashboard = () => {
         )}
         {isConsultant && (
           <div className="w-1/5 space-y-2">
-            <Link to="/dashboard/instructorhome">
+            <Link to="/dashboard/consultanthome">
               <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
                 <FaHome></FaHome>Home
               </button>
@@ -51,9 +63,10 @@ const Dashboard = () => {
                 <SiGoogleclassroom></SiGoogleclassroom>My Services
               </button>
             </Link>
+            {/* <Link to={`/dashboard/addservices/${user?.email}`}> */}
             <Link to="/dashboard/addservices">
               <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
-                 Add New Service
+                Add New Service
               </button>
             </Link>
           </div>
