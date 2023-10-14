@@ -34,6 +34,14 @@ body{
     z-index: 2;
 }
 
+
+.form-popup i{
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
 .form-popup .form-box{
     display: flex;
 }
@@ -205,6 +213,11 @@ form button {
 }
 
 form button:hover {
+    background: black;
+    color: white;
+}
+
+.form-details button:hover{
     background: black;
     color: white;
 }
