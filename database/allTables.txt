@@ -1,5 +1,5 @@
 CREATE TABLE client (
-    clientID INT,
+    clientID VARCHAR(255),
     password VARCHAR(255),
     name VARCHAR(255),
     contactNo VARCHAR(255),
@@ -12,7 +12,7 @@ CREATE TABLE client (
 
 CREATE TABLE clientpost (
     postID INT AUTO_INCREMENT PRIMARY KEY,
-    clientID INT,
+    clientID VARCHAR(255),
     worksType VARCHAR(255),
     worksDescription VARCHAR(255),
     preferredTime DATE,
@@ -23,7 +23,7 @@ CREATE TABLE clientpost (
 );
 
 CREATE TABLE worker (
-    workerID INT,
+    workerID VARCHAR(255),
     password VARCHAR(255),
     name VARCHAR(255),
     contactNo VARCHAR(255),
@@ -39,7 +39,7 @@ CREATE TABLE worker (
 
 CREATE TABLE workerpost (
     postID INT AUTO_INCREMENT PRIMARY KEY,
-    workerID INT,
+    workerID VARCHAR(255),
     worksType VARCHAR(255),
     worksDescription VARCHAR(255),
     preferredTime DATE,
@@ -50,7 +50,7 @@ CREATE TABLE workerpost (
 );
 
 CREATE TABLE subscription (
-    clientID INT,
+    clientID VARCHAR(255),
     subscriptionType VARCHAR(255),
     subscriptionAmount INT,
     startDate DATE,
@@ -62,8 +62,8 @@ CREATE TABLE subscription (
 
 CREATE TABLE review (
     reviewNo INT AUTO_INCREMENT PRIMARY KEY,
-    clientID INT,
-    workerID INT,
+    clientID VARCHAR(255),
+    workerID VARCHAR(255),
     skillsName VARCHAR(255),
     stars INT,
     comment VARCHAR(255),
@@ -73,7 +73,7 @@ CREATE TABLE review (
 );
 
 CREATE TABLE skills (
-    workerID INT,
+    workerID VARCHAR(255),
     skillsName VARCHAR(255),
     prferredAmount INT,
     rating INT,

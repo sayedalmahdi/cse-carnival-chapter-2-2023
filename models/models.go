@@ -1,7 +1,7 @@
 package models
 
-type client struct {
-	ClientID  int    `json:"clientID"`
+type Client struct {
+	ClientID  string    `json:"clientID"`
 	Password  string `json:"password"`
 	Name      string `json:"name"`
 	ContactNo string `json:"contactNo"`
@@ -10,7 +10,7 @@ type client struct {
 	Address   string `json:"address"`
 }
 
-type clientpost struct {
+type Clientpost struct {
 	PostID               int    `json:"postID"`
 	ClientID             int    `json:"clientID"`
 	WorksType            string `json:"worksType"`
@@ -20,8 +20,8 @@ type clientpost struct {
 	PostAvailabilityTime string `json:"postAvailabilityTime"`
 }
 
-type worker struct {
-	WorkerID         int    `json:"workerID"`
+type Worker struct {
+	WorkerID         string    `json:"workerID"`
 	Password         string `json:"password"`
 	Name             string `json:"name"`
 	ContactNo        string `json:"contactNo"`
@@ -33,7 +33,7 @@ type worker struct {
 	Availability     bool   `json:"availability"`
 }
 
-type workerpost struct {
+type Workerpost struct {
 	PostID               int    `json:"postID"`
 	WorkerID             int    `json:"workerID"`
 	WorksType            string `json:"worksType"`
@@ -43,14 +43,14 @@ type workerpost struct {
 	PostAvailabilityTime string `json:"postAvailabilityTime"`
 }
 
-type skills struct {
+type Skills struct {
 	WorkerID        int    `json:"workerID"`
 	SkillsName      string `json:"skillsName"`
 	PreferredAmount int    `json:"preferredAmount"`
 	Rating          int    `json:"rating"`
 }
 
-type review struct {
+type Review struct {
 	ReviewNo   int    `json:"reviewNo"`
 	ClientID   int    `json:"clientID"`
 	WorkerID   int    `json:"workerID"`
@@ -59,7 +59,7 @@ type review struct {
 	Comment	string `json:"comment"`
 }
 
-type subscription struct {
+type Subscription struct {
 	ClientID int `json:"clientID"`
 	SubscriptionType string `json:"subscriptionType"`
 	SubscriptionAmount int `json:"subscriptionAmount"`
