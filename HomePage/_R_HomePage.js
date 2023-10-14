@@ -1,9 +1,11 @@
 const inputs = document.querySelectorAll(".input-field");
-const toggle_btn = document.querySelectorAll(".toggle");
+
 const main = document.querySelector("main");
 
 const bullets = document.querySelectorAll(".bullets span");
 const images = document.querySelectorAll(".image");
+
+const styleForm = document.getElementById("styleForm");
 
 let slideIndex = 0;
 
@@ -16,12 +18,6 @@ inputs.forEach(inp =>{
         inp.classList.remove("active");
     })
 })
-
-toggle_btn.forEach((btn) =>{
-    btn.addEventListener("click", () =>{
-        main.classList.toggle("sign-up-mode");
-    });
-});
 
 function moveSlider(){
     // let index = this.dataset.value;
@@ -45,9 +41,13 @@ function moveSlider(){
     currentBullet.classList.add("active");
 }
 
+function openForm(){
+    styleForm.style.display = "block";
+}
 
-function toHomePage(){
-    window.location.href = "../HomePage/_R_HomePage.html";
+function closeForm(){
+    //console.log("Here");
+    styleForm.style.display = "none";
 }
 
 moveSlider();
