@@ -47,7 +47,7 @@ func Router() *mux.Router {
 	// review
 	router.HandleFunc("/api/review", review.InsertReview).Methods("POST") // insert review
 	router.HandleFunc("/api/review/{workerID}/{skillsName}", review.GetWorkerReviews).Methods("GET") // get all reviews of a worker of a specific skillsName
-	router.HandleFunc("/api/review/{reviewNo}/{clientID}/{workerID}/{skillsNo}", review.UpdateReview).Methods("PUT") // update review. reviewNo, clientID, workerID and skillsNo can not be updated but every data should be present in request body
+	router.HandleFunc("/api/review/{reviewNo}/{clientID}/{workerID}/{skillsName}", review.UpdateReview).Methods("PUT") // update review. reviewNo, clientID, workerID and skillsNo can not be updated but every data should be present in request body
 	router.HandleFunc("/api/review/{reviewNo}", review.DeleteReview).Methods("DELETE") // delete review
 
 
