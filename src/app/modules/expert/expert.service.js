@@ -4,14 +4,14 @@ const ApiError = require("../../../errors/ApiError");
 var jwt = require("jsonwebtoken");
 
 const createExpertInDB = async (payload) => {
-  const {  VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email , VerificationStatus } = payload;
+  const {  VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email ,  Password } = payload;
 
   const query =
-    "INSERT INTO Doctors (VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email , VerificationStatus) VALUES (?, ?, ?, ?,?, ?,?)";
-  const values = [VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email , VerificationStatus];
+    "INSERT INTO Doctors (VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email ,  Password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+  const values = [VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email ,  Password];
 
   const selectQuery =
-  "SELECT VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email , VerificationStatus FROM Doctors";
+  "SELECT VerificationInfo , Name , Specialization , ClinicAddress , PhoneNumber, Email , Password FROM Doctors";
 
   await pool.promise().query(query, values);
 
@@ -21,21 +21,21 @@ const createExpertInDB = async (payload) => {
 };
 
 const loginExpert = async (payload) => {
-  const { NID ,Email, Password } = payload;
-  const query = "SELECT * FROM Users";
+  const { Email, Password } = payload;
+  const query = "SELECT * FROM Doctors";
   const values = [Email];
 
-  const [user] = (await pool.promise().query(query, values))[0];
+  const [expert] = (await pool.promise().query(query, values))[0];
 
   if (expert) {
     if (expert.Password === Password) {
-      const { NID, Username, Email } = expert;
+      const { VerificationInfo, Name, Email } = expert;
 
       const accessToken = jwt.sign(
         {
-          NID, 
-          Username,
-          Email,
+            VerificationInfo, 
+            Name,
+            Email,
         },
         config.jwt.secret,
         { expiresIn: config.jwt.expires_in }
