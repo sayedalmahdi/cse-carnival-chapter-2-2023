@@ -33,7 +33,13 @@ func InsertSubscription(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	var subscription models.Subscription
-	_ = json.NewDecoder(r.Body).Decode(&subscription)
+	err := json.NewDecoder(r.Body).Decode(&subscription)
+
+	if err != nil {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
+	}
 
 	// check if subscription already exists
 	if getClientSubscriptionFromDb(subscription.ClientID).ClientID != "" {
