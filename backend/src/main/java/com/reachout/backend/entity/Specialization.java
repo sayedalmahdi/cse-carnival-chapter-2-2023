@@ -1,39 +1,29 @@
 package com.reachout.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.reachout.backend.entity.Doctor;
-import com.reachout.backend.entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Thana {
-
-
+@Builder
+public class Specialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-//    @JsonIgnore
-//    @OneToOne(mappedBy = "thana")
-//    private Doctor doctor;
-//
-//
-//    @JsonIgnore
-//    @OneToOne(mappedBy = "thana")
-//    private User user;
 }

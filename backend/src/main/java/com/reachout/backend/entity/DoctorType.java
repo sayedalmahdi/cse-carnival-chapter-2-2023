@@ -20,6 +20,10 @@ public class DoctorType {
 
     private String name;
 
-    @OneToOne(mappedBy = "doctorType")
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+
+//    @OneToOne(mappedBy = "doctorType")
+//    private Doctor doctor;
 }
