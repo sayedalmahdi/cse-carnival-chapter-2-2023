@@ -3,6 +3,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { Checkbox, Form, Input } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
+
 const SignUpTourist = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
