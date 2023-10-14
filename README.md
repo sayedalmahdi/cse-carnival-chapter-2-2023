@@ -12,6 +12,13 @@ In today's fast-paced world, accessing expert advice and consultation is crucial
 4. Others 
 
 
+## Instructions
+
+- [ ] Fork this repository
+- [ ] For each major feature create a **branch**
+- [ ] After completing each task create a **commit** and **push** it to your forked repository
+
+
 ### Marking Criteria:
 
 1. Problem definition & Validation (20 points)
