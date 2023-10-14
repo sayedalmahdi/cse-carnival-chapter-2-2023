@@ -1,7 +1,7 @@
+const config = require("./config");
 const app = require("./app");
 const { port } = require("./config");
 const pool = require("./pool");
-require('dotenv').config();
 
 async function main() {
   try {
@@ -25,7 +25,7 @@ async function main() {
     //   }
     // );
 
-    const port = process.env.PORT || 3000;
+    // const port = 8282;
 
     app.listen(port, () => {
       console.log(`app listening on port ${port} | http://localhost:${port}`);
