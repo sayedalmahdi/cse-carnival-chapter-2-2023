@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.13",
     "antd": "^5.9.4",
     "autoprefixer": "^10.4.16",
     "firebase": "^10.5.0",
