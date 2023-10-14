@@ -2,21 +2,34 @@ import React from "react";
 import { Button, Modal, Form, Input, Checkbox, message } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { auth } from "../firebase";
+import { db } from "../firebase";
+import { doc,setDoc } from "firebase/firestore";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 const SignUpTourist = () => {
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
 	const onFinish = async (values) => {
-    try {
-      createUserWithEmailAndPassword(auth, values.email, values.password);
+		try {
+			const { email, password } = values;
+			const userCredential = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password
+			);
+			const uid = userCredential.user.uid;
+			const user = {
+				email,
+				role: "Tourist",
+			};
+
+			await setDoc(doc(db, "users", uid), user);
+
 			message.success("Signup successful!");
 			handleCancel();
 		} catch (error) {
 			console.error("Error signing up: ", error);
 			message.error("Error signing up.");
-		} finally {
-			setLoading(false);
 		}
-  };
+	};
 	const handleGoogleSignup = () => {
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider)
