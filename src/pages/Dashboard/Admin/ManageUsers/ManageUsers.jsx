@@ -48,7 +48,8 @@ const ManageUsers = () => {
                     <tr>
                         <th className="text-2xl">#</th>
                         <th className="text-2xl">Name</th>
-                        <th className="text-2xl">Email</th>
+                          <th className="text-2xl">Email</th>
+                          <th className="text-2xl">Role</th>
                         <th className="text-2xl">Time</th>
                         <th className="text-2xl">Status</th>
                     </tr>
@@ -59,6 +60,7 @@ const ManageUsers = () => {
                                 <th>{index+1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
+                                <td>{user.role}</td>
                                 <td>{user.registrationTime}</td>
                                 <td>
                                     {

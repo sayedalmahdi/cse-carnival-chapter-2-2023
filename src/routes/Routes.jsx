@@ -11,6 +11,7 @@ import MyServices from "../pages/Dashboard/Consultant/MyServices/MyServices";
 import AddServices from "../pages/Dashboard/Consultant/AddServices/AddServices";
 import Home from "../pages/Home/Home";
 import Services from "../pages/Services/Services";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -60,7 +61,11 @@ const router = createBrowserRouter([
                 // path:"addservices/:email",
                 element: <AddServices></AddServices>,
                 // loader: ({params}) => fetch(`http://localhost:5000/consultantdetails/${params?.email}`)
-            }
+            },
+            {
+                path:"manageusers",
+                element: <ManageUsers></ManageUsers>
+            },
         ]
     }
 ]);
