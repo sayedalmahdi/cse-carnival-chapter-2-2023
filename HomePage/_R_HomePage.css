@@ -126,7 +126,7 @@ input{
 
 
 
-main{
+.formContainer{
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
@@ -232,8 +232,11 @@ form.sign-up-form{
     color: var(--toggleHoverColor);
 }
 
-.inner-box i{
+.box i{
     cursor: pointer;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 20px;
 }
 
 .input-wrap{
@@ -332,21 +335,21 @@ input[type="file"] {
     color: #8371fd;
 }
 
-main.sign-up-mode form.sign-in-form{
+.formContainer.sign-up-mode form.sign-in-form{
     opacity: 0;
     pointer-events: none;
 }
 
-main.sign-up-mode form.sign-up-form{
+.formContainer.sign-up-mode form.sign-up-form{
     opacity: 1;
     pointer-events: all;
 }
 
-main.sign-up-mode .forms-wrap{
+.formContainer.sign-up-mode .forms-wrap{
     left: 55%;
 }
 
-main.sign-up-mode .carousel {
+.formContainer.sign-up-mode .carousel {
     left: 0%;
 }
 
@@ -448,4 +451,67 @@ main.sign-up-mode .carousel {
     width: 1.1rem;
     background-color: var(--h4TextColor);
     border-radius: 1rem;
+}
+
+
+.container{
+    width: 100%;
+    margin-top: -45%;
+    /* display: flex; */
+}
+
+.container h2{
+    margin-left: 30px;
+}
+
+.openForm{
+    visibility: visible;
+    /* transform: translate(0%,-15%) scale(1); */
+}
+
+
+.container-details{
+    position: relative;
+}
+
+.content-section{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px 20px;
+    grid-gap: 1rem;
+    z-index: 1;
+}
+
+.card{
+    flex-basis: 48%;
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 5px;
+    height: calc(70vh/2);
+    width: 40vh;
+    border-radius: 20px;
+}
+
+.hire{
+    margin-top: 10px;
+    width: 70%;
+}
+
+.card img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+    margin-top: 10px;
+}
+
+.card ul{
+    list-style: none;
+}
+
+.card h2{
+    margin:15px 0px;
+    font-size: 28px;
 }

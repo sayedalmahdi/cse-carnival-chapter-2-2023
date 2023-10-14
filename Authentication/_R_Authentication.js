@@ -45,4 +45,4 @@ function moveSlider(){
     currentBullet.classList.add("active");
 }
 
-moveSlider();
+// moveSlider();
