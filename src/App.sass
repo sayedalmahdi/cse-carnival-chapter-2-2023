@@ -1,26 +1,23 @@
-body, html
+body, html 
   margin: 0
   padding: 0
 
-.content-container
-  padding: 20px
 
-.avatar-uploader
-  width: auto !important
-  margin-bottom: 20px
-  padding: 20px
+.content-container
+    padding: 20px
+    
 
 .message-container
   padding: 10px 15px
   border-radius: 15px
   margin-bottom: 10px
-
+  
   word-wrap: break-word
   white-space: normal
   overflow: hidden
   text-overflow: ellipsis
   text-align: right
-  margin-left: auto // Aligns the bubbles to the right
+  margin-left: auto  // Aligns the bubbles to the right
 
 .sent-message
   background-color: white
@@ -31,13 +28,117 @@ body, html
   background-color: white
   color: black
   align-self: flex-start
+* 
+  margin: 0
+  padding: 0
+  box-sizing: border-box
 
-.opaque-header
-  background-color: black
-  opacity: 1
-  transition: background-color 0.3s ease
+ul
+  list-style: none
 
-.transparent-header
-  background-color: transparent
-  opacity: 0.9
-  transition: background-color 0.3s ease
+li
+  text-decoration: none
+
+a
+  text-decoration: none
+  color: inherit
+
+/* KEYFRAMES */
+@keyframes fade-in 
+  0%
+    opacity: 0
+    transform: translateY(15px)
+  100%
+    opacity: 0.7
+    transform: translate(0)
+
+body 
+  background-image: url("src/assets/homepage2.svg")
+  background-size: 90vmin 90vmin
+  background-position: center center
+  background-repeat: no-repeat
+  background-color: rgb(243,244,246)
+
+  height: 100vh
+  overflow-y: hidden
+  margin: 0
+  display: flex
+  flex-direction: column
+ 
+
+
+
+/* HEADER */
+.header 
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 900px
+  margin: 0 auto
+  animation: fade-in 0.4s
+
+
+
+  .nav
+    padding: 20px 0
+
+    .nav-list
+      display: flex
+      column-gap: 10px
+
+      .nav-item
+        margin-left: 25px
+
+        .nav-link
+          text-decoration: none
+          color: white
+          font-size: 14px
+          font-weight: 500
+          transition: all 0.3s
+
+          &:hover
+            color: grey
+
+.rounded-button
+  display: flex
+  align-items: center
+  justify-content: center
+  border: none
+  background-color: #2f2e41
+  color: white
+  border-radius: 5px
+  padding: 8px 20px
+  font-weight: 500
+  transition: all 0.3s
+
+  &:hover
+    
+    transform: scale(1.1) // Increase the size by 10% on hover
+    box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.2)
+
+.login-button
+  display: flex
+  align-items: center
+  justify-content: center
+  background: none
+
+  border-radius: 5px // Rounded corners with a radius of 5px
+  padding: 8px 20px
+  font-weight: bold
+  transition: all 0.3s
+
+  &:hover
+    transform: scale(1.1) // Increase the size by 10% on hover
+    box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.2)
+
+
+
+.tagline
+    text-align: left
+    position: absolute
+    
+    padding-left: 20px
+    padding-top: 150px
+    color: white
+    font-size: 36px
