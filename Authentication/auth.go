@@ -147,7 +147,7 @@ func checkUserClient(clientID string, password string) bool {
 	db, _ := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
 	defer db.Close()
 	var client models.Client
-	err := db.QueryRow("SELECT * FROM client WHERE clientID = ?", clientID).Scan(&client.ClientID, &client.Password)
+	err := db.QueryRow("SELECT * FROM client WHERE clientID = ?", clientID).Scan(&client.ClientID, &client.Password, &client.Name, &client.ContactNo, &client.NidNo, &client.Email, &client.Address)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -199,7 +199,7 @@ func checkUserWorker(workerID string, password string) bool {
 	db, _ := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
 	defer db.Close()
 	var worker models.Worker
-	err := db.QueryRow("SELECT * FROM worker WHERE workerID = ?", workerID).Scan(&worker.WorkerID, &worker.Password)
+	err := db.QueryRow("SELECT * FROM worker WHERE workerID = ?", workerID).Scan(&worker.WorkerID, &worker.Password, &worker.Name, &worker.ContactNo, &worker.NidNo, &worker.Email, &worker.Address, &worker.WorkerDescrption, &worker.EarnedPoint, &worker.Availability)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
