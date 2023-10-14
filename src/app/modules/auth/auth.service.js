@@ -21,21 +21,21 @@ const createUserInDB = async (payload) => {
 };
 
 const loginUser = async (payload) => {
-  const { phoneNumber, password } = payload;
-  const query = "SELECT * FROM users WHERE phoneNumber = ?";
-  const values = [phoneNumber];
+  const { NID ,Email, Password } = payload;
+  const query = "SELECT * FROM Users";
+  const values = [Email];
 
   const [user] = (await pool.promise().query(query, values))[0];
 
   if (user) {
-    if (user.password === password) {
-      const { id, name, phonenumber } = user;
+    if (user.Password === Password) {
+      const { NID, Username, Email } = user;
 
       const accessToken = jwt.sign(
         {
-          id,
-          name,
-          phonenumber,
+          NID, 
+          Username,
+          Email,
         },
         config.jwt.secret,
         { expiresIn: config.jwt.expires_in }
