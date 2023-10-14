@@ -12,7 +12,7 @@ const GuideList = () => {
 
 	const fetchGuides = async () => {
 		const ref = collection(db, "users");
-		const q = query(ref, where("role", "==", "guide"));
+		const q = query(ref, where("approved", "==", true));
 
 		const querySnapshot = await getDocs(q);
 

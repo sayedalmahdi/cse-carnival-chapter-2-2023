@@ -47,6 +47,7 @@ const SignUpAsUser = () => {
 				email,
 				role: "guide",
 				nid: fileUrl,
+        approved: false,
         avatar
 			};
 
