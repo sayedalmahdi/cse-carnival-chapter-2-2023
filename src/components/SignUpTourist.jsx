@@ -22,7 +22,7 @@ const SignUpTourist = () => {
 			const uid = userCredential.user.uid;
 			const user = {
 				email,
-				role: "Tourist",
+				role: "tourist",
 			};
 
 			await setDoc(doc(db, "users", uid), user);

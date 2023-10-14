@@ -9,29 +9,37 @@ import { SET_USER } from "./state/Constants";
 import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { PROTECTED_ROUTES } from "./routes";
+import { signOut } from "firebase/auth";
 
 function App() {
 	const [loading, setLoading] = useState(true);
 	const [{ user }, action] = useStateValue();
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	useEffect(() => {
 		auth.onAuthStateChanged(async (userCredenetials) => {
 			if (userCredenetials) {
 				setLoading(true);
 				const userData = (await getDoc(doc(db, "users", userCredenetials.uid))).data();
-
-				console.log(userData);
-
 				action({ type: SET_USER, payload: { user: userData } });
+				if (location.pathname === "/login" || location.pathname === "/") {
+					if (userData.role === "guide") navigate("/chat");
+					else if (userData.role === "tourist") navigate("/guides");
+				}
 			} else {
-				console.log(location.pathname);
 				action({ type: SET_USER, payload: { user: null } });
-				// navigate("/");
+				PROTECTED_ROUTES.forEach((route) => {
+					if (route.path === location.pathname) navigate("/");
+				});
 			}
 			setLoading(false);
 		});
 	}, []);
+
+	console.log("user", user);
 
 	return (
 		<Layout>
@@ -39,7 +47,7 @@ function App() {
 				<Spinner />
 			) : (
 				<>
-					{true && <ProtectedRoutes />}
+					{user && <ProtectedRoutes />}
 					<PublicRoutes />
 				</>
 			)}

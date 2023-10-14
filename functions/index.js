@@ -6,7 +6,7 @@ const cors = require("cors")({ origin: true });
 const moment = require("moment");
 
 const stripe = require("stripe")(
-	"sk_test_51Lc1pnJcd1cjeXbxsPFgId1Qa4FGheCrZIgLqsPSJGbxaW9hXXu3tTVAIi1RLcZrhEWUvPafWSSlboK2tybQN0ip00p0B0ZJLC"
+	"sk_test_51HQXc9FhUcydeiwhnQUxCzMQ8I9U4bdEj5epXvz2hp6oL6H5a0ogoMY4zadpcZJ3tilmNTN3vfSThqnsqyAMlqh000eVqyU9pY"
 );
 
 admin.initializeApp();
@@ -61,7 +61,7 @@ const getUser = async (ctx) => {
 		throw new functions.https.HttpsError("not-found", "User not found");
 	}
 
-	return doc.data();
+	return { ...doc.data(), _id: doc.id };
 };
 
 exports.webhook = functions.https.onRequest(async (req, res) => {
@@ -91,15 +91,14 @@ exports.webhook = functions.https.onRequest(async (req, res) => {
 		switch (event.type) {
 			case "checkout.session.completed":
 				const data = event.data.object;
-
 				const touristId = data.client_reference_id;
-
-				const guideId = data.metadata.guideId;
+				const guideId = data.metadata.guide;
 
 				//create chat doc with touristId and guideId
-				db.collection("cities").doc(`${touristId}_${guideId}`).set({
+				db.collection("chat").doc(`${touristId}_${guideId}`).set({
 					tourist: touristId,
 					guide: guideId,
+					isActive: true,
 				});
 
 				break;
