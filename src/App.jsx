@@ -23,7 +23,8 @@ function App() {
 		auth.onAuthStateChanged(async (userCredenetials) => {
 			if (userCredenetials) {
 				setLoading(true);
-				const userData = (await getDoc(doc(db, "users", userCredenetials.uid))).data();
+				const snapshot = await getDoc(doc(db, "users", userCredenetials.uid));
+				const userData = { id: snapshot.id, ...snapshot.data() };
 				action({ type: SET_USER, payload: { user: userData } });
 				if (location.pathname === "/login" || location.pathname === "/") {
 					if (userData.role === "guide") navigate("/chat");
