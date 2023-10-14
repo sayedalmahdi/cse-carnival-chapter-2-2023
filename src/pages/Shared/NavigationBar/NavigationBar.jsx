@@ -1,8 +1,8 @@
+import { useContext } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAdmin from "../../../hooks/useAdmin";
 import useConsultant from "../../../hooks/useConsultant";
-import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 const NavigationBar = () => {
   const { logOut, user } = useContext(AuthContext);
@@ -54,6 +54,10 @@ const NavigationBar = () => {
       )}
     </>
   );
+  const handleLogOut = () => {
+    logOut();
+    navigate("/");
+  };
   return (
     <div className="navbar bg-[#e2136e] text-[#f3f3f3] lg:px-10 dark:text-gray-100 dark:bg-slate-900">
       <div className="navbar-start ">
@@ -75,7 +79,10 @@ const NavigationBar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button className="py-1 px-2 mx-1 rounded hover:bg-[#af2963] font-semibold md:my-0 text-white border">
+          <button
+            onClick={handleLogOut}
+            className="py-1 px-2 mx-1 rounded hover:bg-[#af2963] font-semibold md:my-0 text-white border"
+          >
             Log out
           </button>
         ) : (
