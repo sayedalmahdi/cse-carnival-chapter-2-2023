@@ -1,6 +1,5 @@
 package com.reachout.backend.entity;
 
-import com.reachout.backend.entity.Doctor.Doctor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.reachout.backend.entity.Doctor;
+package com.reachout.backend.entity;
 
-import com.reachout.backend.entity.Address.District;
-import com.reachout.backend.entity.Address.Thana;
+import com.reachout.backend.entity.District;
+import com.reachout.backend.entity.Thana;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

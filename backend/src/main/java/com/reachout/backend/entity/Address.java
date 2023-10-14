@@ -1,4 +1,4 @@
-package com.reachout.backend.entity.Address;
+package com.reachout.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

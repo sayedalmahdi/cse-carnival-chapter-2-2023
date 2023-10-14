@@ -1,6 +1,6 @@
-package com.reachout.backend.entity.Address;
+package com.reachout.backend.entity;
 
-import com.reachout.backend.entity.Doctor.Doctor;
+import com.reachout.backend.entity.Doctor;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,18 +12,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class District {
-
+@Table(name = "doctor_type")
+public class DoctorType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     private String name;
 
-    @OneToOne(mappedBy = "district")
-    private Address address;
-
-    @OneToOne(mappedBy = "district")
+    @OneToOne(mappedBy = "doctorType")
     private Doctor doctor;
-
 }
