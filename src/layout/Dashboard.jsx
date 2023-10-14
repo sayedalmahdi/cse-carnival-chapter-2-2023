@@ -78,7 +78,7 @@ const Dashboard = () => {
                 <FaHome></FaHome>Home
               </button>
             </Link>
-            <Link to="/dashboard/allclasses">
+            <Link to="/dashboard/manageServices">
               <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
                 <FaRegAddressBook></FaRegAddressBook>All Services
               </button>
