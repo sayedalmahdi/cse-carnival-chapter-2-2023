@@ -49,7 +49,7 @@ func InsertClientPost(w http.ResponseWriter, r *http.Request) {
 
 	// send success response to client
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "success"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 }
 
 // updating clientPost to database
@@ -92,14 +92,14 @@ func UpdateClientPost(w http.ResponseWriter, r *http.Request) {
 	postIDInt, err := strconv.Atoi(postID)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"message": "postID must be integer!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "postID must be integer!"})
 		return
 	}
 
 	// check if clientID and postID is valid
 	if clientID != clientPost.ClientID || postIDInt != clientPost.PostID {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"message": "clientID and postID can not be changed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "clientID and postID can not be changed!"})
 		return
 	}
 
@@ -108,7 +108,7 @@ func UpdateClientPost(w http.ResponseWriter, r *http.Request) {
 
 	// send success response to client
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "success"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 }
 
 // getting clientPosts of a client from database
@@ -196,7 +196,7 @@ func DeleteClientPost(w http.ResponseWriter, r *http.Request) {
 	postIDInt, err := strconv.Atoi(postID)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"message": "postID must be integer!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "postID must be integer!"})
 		return
 	}
 
@@ -205,7 +205,7 @@ func DeleteClientPost(w http.ResponseWriter, r *http.Request) {
 
 	// send success response to client
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "success"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 }
 
 
@@ -246,7 +246,7 @@ func InsertWorkerPost(w http.ResponseWriter, r *http.Request) {
 
 	// send success response to worker
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "success"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 }
 
 // getting workerPosts of a worker from database
@@ -343,14 +343,14 @@ func UpdateWorkerPost(w http.ResponseWriter, r *http.Request) {
 	postIDInt, err := strconv.Atoi(postID)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"message": "postID must be integer!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "postID must be integer!"})
 		return
 	}
 
 	// check if workerID and postID is valid
 	if workerID != workerPost.WorkerID || postIDInt != workerPost.PostID {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"message": "workerID and postID can not be changed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "workerID and postID can not be changed!"})
 		return
 	}
 
@@ -359,7 +359,7 @@ func UpdateWorkerPost(w http.ResponseWriter, r *http.Request) {
 
 	// send success response to worker
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "success"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 }
 
 // deleting workerPost from database
@@ -396,7 +396,7 @@ func DeleteWorkerPost(w http.ResponseWriter, r *http.Request) {
 	postIDInt, err := strconv.Atoi(postID)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"message": "postID must be integer!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "postID must be integer!"})
 		return
 	}
 
@@ -405,5 +405,5 @@ func DeleteWorkerPost(w http.ResponseWriter, r *http.Request) {
 
 	// send success response to worker
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "success"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "success"})
 }
