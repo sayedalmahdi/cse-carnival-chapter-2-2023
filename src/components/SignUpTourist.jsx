@@ -3,8 +3,12 @@ import { Button, Modal, Form, Input, Checkbox, message } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { auth } from "../firebase";
 import { db } from "../firebase";
-import { doc,setDoc } from "firebase/firestore";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import {
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+	signInWithPopup,
+} from "firebase/auth";
 const SignUpTourist = () => {
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
 	const onFinish = async (values) => {
@@ -22,7 +26,6 @@ const SignUpTourist = () => {
 			};
 
 			await setDoc(doc(db, "users", uid), user);
-
 			message.success("Signup successful!");
 			handleCancel();
 		} catch (error) {
@@ -30,21 +33,41 @@ const SignUpTourist = () => {
 			message.error("Error signing up.");
 		}
 	};
-	const handleGoogleSignup = () => {
+	const handleGoogleSignup = async () => {
 		const provider = new GoogleAuthProvider();
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const token = credential.accessToken;
-				const user = result.user;
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				const email = error.email;
-				const credential = GoogleAuthProvider.credentialFromError(error);
-				// ...
-			});
+
+		try {
+			const result = await signInWithPopup(auth, provider);
+			const credential = GoogleAuthProvider.credentialFromResult(result);
+			const token = credential.accessToken;
+			const user = result.user;
+
+			const emailExists = await checkEmailExists(user.email);
+
+			if (!emailExists) {
+				const userObject = {
+					email: user.email,
+					role: "Tourist",
+				};
+
+				await setDoc(doc(db, "users", user.uid), userObject);
+
+				message.success("Signup successful!");
+			} else {
+				message.error("Email is already registered.");
+			}
+
+			handleCancel();
+		} catch (error) {
+			console.error("Error signing up with Google: ", error);
+			message.error("Error signing up with Google.");
+		}
+	};
+
+	const checkEmailExists = async (email) => {
+		const usersRef = doc(db, "users", email);
+		const docSnap = await getDoc(usersRef);
+		return docSnap.exists();
 	};
 	const onFinishFailed = (errorInfo) => {
 		console.log("Failed:", errorInfo);
