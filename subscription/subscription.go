@@ -44,16 +44,16 @@ func InsertSubscription(w http.ResponseWriter, r *http.Request) {
 	// check if subscription already exists
 	if getClientSubscriptionFromDb(subscription.ClientID).ClientID != "" {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Subscription already exists!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Subscription already exists!"})
 		return
 	}
 
 	if insertSubscriptionInDb(subscription) {
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Subscription inserted successfully!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Subscription inserted successfully!"})
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Subscription insertion failed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Subscription insertion failed!"})
 	}
 }
 
@@ -119,9 +119,9 @@ func DeleteClientSubscription(w http.ResponseWriter, r *http.Request) {
 
 	if deleteClientSubscriptionFromDb(clientID) {
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Subscription deleted successfully!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Subscription deleted successfully!"})
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Subscription deletion failed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Subscription deletion failed!"})
 	}
 }
