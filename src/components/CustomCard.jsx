@@ -16,7 +16,7 @@ const CustomCard = ({ guide }) => {
 	const pay = async () => {
 		setLoading(true);
 		try {
-			const res = await createPaymentSession({ guideId: guide.id });
+			const res = await createPaymentSession({ guideId: guide.id, guideName: guide.name });
 
 			console.log(res.data);
 			if (res.data.ok) window.location.href = res.data.url;

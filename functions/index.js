@@ -34,6 +34,7 @@ exports.createPaymentSession = functions.https.onCall(async (data, ctx) => {
 		metadata: {
 			tourist: userData._id,
 			guide: data.guideId,
+			guideName: data.guideName,
 		},
 		client_reference_id: userData._id,
 		mode: "payment",
@@ -98,6 +99,7 @@ exports.webhook = functions.https.onRequest(async (req, res) => {
 				db.collection("chat").doc(`${touristId}_${guideId}`).set({
 					tourist: touristId,
 					guide: guideId,
+                    guideName: data.metadata.guideName,
 					isActive: true,
 				});
 
