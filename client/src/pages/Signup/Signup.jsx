@@ -51,7 +51,7 @@ const Signup = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <div>
-                            <p>Already have an account?<Link to='/' className='primary'>
+                            <p>Already have an account?<Link to='/login' className='primary'>
                                 <button className="btn btn-link">Login</button>
                             </Link></p>
                         </div>
