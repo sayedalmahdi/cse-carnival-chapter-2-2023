@@ -69,13 +69,17 @@ const SignUpAsUser = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div class="container mx-auto flex justify-between p-8 border border-gray-300 max-w-[70%] rounded-lg shadow-lg">
-        <div class="w-1/2">
+      <div class="container flex">
+        <div
+          className="w-1/2 flex items-center justify-center"
+          style={{
+            overflow: "hidden",
+          }}
+        >
           <img src={SignupSvg} alt="" width={400} />
         </div>
         <div class="w-1/2 bg-gray-100 p-4 flex flex-col items-center justify-center">
           <Title level={2} class="mb-4">
-            {" "}
             Apply as a guide
           </Title>
 
