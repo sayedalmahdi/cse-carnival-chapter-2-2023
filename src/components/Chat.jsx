@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { Button, Input } from "antd";
-import { collection, doc, getDoc, getDocs, onSnapshot, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
 
 const Chat = ({ currentUser, otherUser }) => {
 	const [messages, setMessages] = useState([]);
 	const [message, setMessage] = useState("");
+	const [isValid, setIsValid] = useState(false);
+
+	//Get all conversations of tourist a
+	const getConversations = async () => {
+		//get all doc where tourist is a
+		const collectionRef = collection(db, "chat");
+		// Create a query against the collection.
+		const q = query(collectionRef, where("tourist", "==", "a"));
+
+		const querySnapshot = await getDocs(q);
+
+		querySnapshot.forEach((doc) => {
+			console.log(doc.id, " => ", doc.data());
+		});
+	};
 
 	const getConversation = async () => {
 		const collectionRef = collection(db, "chat", "a_b", "messages");
@@ -31,6 +46,22 @@ const Chat = ({ currentUser, otherUser }) => {
 			time: new Date().toISOString(),
 		});
 	};
+
+	useEffect(() => {
+		//Check if the user has right to chat
+		const checkUser = async () => {
+			const collectionRef = collection(db, "chat");
+			const docRef = doc(collectionRef, "a_b");
+			const docSnap = await getDoc(docRef);
+			if (docSnap.exists()) {
+				setIsValid(true);
+			} else {
+				setIsValid(false);
+			}
+		};
+		checkUser();
+		getConversations();
+	}, []);
 
 	return (
 		<div>

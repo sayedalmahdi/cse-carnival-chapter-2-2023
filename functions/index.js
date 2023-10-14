@@ -1,9 +1,113 @@
+/* eslint-disable no-case-declarations */
+/* eslint-disable no-undef */
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const cors = require("cors")({ origin: true });
+const moment = require("moment");
 
-// // Create and deploy your first functions
-// // https://firebase.google.com/docs/functions/get-started
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const stripe = require("stripe")(
+	"sk_test_51Lc1pnJcd1cjeXbxsPFgId1Qa4FGheCrZIgLqsPSJGbxaW9hXXu3tTVAIi1RLcZrhEWUvPafWSSlboK2tybQN0ip00p0B0ZJLC"
+);
+
+admin.initializeApp();
+const db = admin.firestore();
+
+const SITE_URL = "localhost:5173";
+
+exports.createPaymentSession = functions.https.onCall(async (data, ctx) => {
+	const userData = await getUser(ctx);
+
+	const req = {
+		billing_address_collection: "auto",
+		line_items: [
+			{
+				price_data: {
+					currency: "usd",
+					product_data: {
+						name: "Consultation",
+					},
+					unit_amount: 2000,
+				},
+				quantity: 1,
+			},
+		],
+		metadata: {
+			tourist: userData._id,
+			guide: data.guideId,
+		},
+		client_reference_id: userData._id,
+		mode: "payment",
+		success_url: `${SITE_URL}/tourist/payment?success=true&session_id={CHECKOUT_SESSION_ID}`,
+		cancel_url: `${SITE_URL}/tourist/payment?canceled=true`,
+	};
+
+	if (userData.email) req.customer_email = userData.email;
+
+	const session = await stripe.checkout.sessions.create(req);
+
+	return { ok: true, url: session.url };
+});
+
+const getUser = async (ctx) => {
+	if (!ctx.auth) {
+		throw new functions.https.HttpsError("failed-precondition", "User must be authenticated");
+	}
+	const uid = ctx.auth.uid;
+
+	const ref = db.collection("users").doc(uid);
+	const doc = await ref.get();
+
+	if (!doc.exists) {
+		throw new functions.https.HttpsError("not-found", "User not found");
+	}
+
+	return doc.data();
+};
+
+exports.webhook = functions.https.onRequest(async (req, res) => {
+	cors(req, res, async () => {
+		let event = req.body;
+		// Replace this endpoint secret with your endpoint's unique secret
+		// If you are testing with the CLI, find the secret by running 'stripe listen'
+		// If you are using an endpoint defined with the API or dashboard, look in your webhook settings
+		// at https://dashboard.stripe.com/webhooks
+		const endpointSecret = "whsec_e2183a300ff630aae892c1f01173795457de8da19da98ac0515b1ca795b967e6";
+		// Only verify the event if you have an endpoint secret defined.
+		// Otherwise use the basic event deserialized with JSON.parse
+		// if (endpointSecret) {
+		// 	// Get the signature sent by Stripe
+		// 	const signature = request.headers["stripe-signature"];
+		// 	try {
+		// 		event = stripe.webhooks.constructEvent(
+		// 			request.body,
+		// 			signature,
+		// 			endpointSecret
+		// 		);
+		// 	} catch (err) {
+		// 		console.log(`⚠️  Webhook signature verification failed.`, err.message);
+		// 		return response.sendStatus(400);
+		// 	}
+		// }
+		switch (event.type) {
+			case "checkout.session.completed":
+				const data = event.data.object;
+
+				const touristId = data.client_reference_id;
+
+				const guideId = data.metadata.guideId;
+
+				//create chat doc with touristId and guideId
+				db.collection("cities").doc(`${touristId}_${guideId}`).set({
+					tourist: touristId,
+					guide: guideId,
+				});
+
+				break;
+			default:
+				// Unexpected event type
+				console.log(`Unhandled event type ${event.type}.`);
+		}
+		// Return a 200 response to acknowledge receipt of the event
+		res.status(200).send();
+	});
+});
