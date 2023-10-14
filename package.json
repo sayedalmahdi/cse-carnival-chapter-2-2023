@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "antd": "^5.9.4",
     "autoprefixer": "^10.4.16",
     "firebase": "^10.5.0",

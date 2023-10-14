@@ -9,11 +9,13 @@ const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const SignUpTourist = React.lazy(() => import("./components/SignUpTourist"));
 const SignUpAsGuide = React.lazy(() => import("./pages/SignUpAsGuide"));
 
+const Admin = React.lazy(() => import("./pages/Admin"));
 export const PUBLIC_ROUTES = [
 	{ path: "/", element: Home },
 	{ path: "/login", element: Login },
 	{ path: "/tourist/signup", element: SignUpTourist },
 	{ path: "/signupAsGuide", element: SignUpAsGuide },
+    { path: "/admin", element: Admin}
 ];
 
 export const PROTECTED_ROUTES = [{ path: "/dashboard", element: Dashboard }];

@@ -26,7 +26,7 @@ function App() {
         console.log(userData);
 
         action({ type: SET_USER, payload: { user: userData } });
-        navigate("/dashboard");
+        // navigate("/dashboard");
       } else {
         console.log(location.pathname);
         action({ type: SET_USER, payload: { user: null } });
