@@ -89,7 +89,13 @@ func UpdateClientInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	var client models.Client
-	_ = json.NewDecoder(r.Body).Decode(&client)
+	err := json.NewDecoder(r.Body).Decode(&client)
+
+	if err != nil {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
+	}
 
 	// get client id from url.
 	// url is: /api/client/{clientID}
@@ -132,7 +138,13 @@ func UpdateWorkerInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	var worker models.Worker
-	_ = json.NewDecoder(r.Body).Decode(&worker)
+	err := json.NewDecoder(r.Body).Decode(&worker)
+
+	if err != nil {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
+	}
 
 	// get worker id from url.
 	// url is: /api/worker/{workerID}
