@@ -1,7 +1,7 @@
 package models
 
 type Client struct {
-	ClientID  string    `json:"clientID"`
+	ClientID  string `json:"clientID"`
 	Password  string `json:"password"`
 	Name      string `json:"name"`
 	ContactNo string `json:"contactNo"`
@@ -12,7 +12,7 @@ type Client struct {
 
 type Clientpost struct {
 	PostID               int    `json:"postID"`
-	ClientID             int    `json:"clientID"`
+	ClientID             string `json:"clientID"`
 	WorksType            string `json:"worksType"`
 	WorksDescription     string `json:"worksDescription"`
 	PreferredTime        string `json:"preferredTime"`
@@ -21,7 +21,7 @@ type Clientpost struct {
 }
 
 type Worker struct {
-	WorkerID         string    `json:"workerID"`
+	WorkerID         string `json:"workerID"`
 	Password         string `json:"password"`
 	Name             string `json:"name"`
 	ContactNo        string `json:"contactNo"`
@@ -35,7 +35,7 @@ type Worker struct {
 
 type Workerpost struct {
 	PostID               int    `json:"postID"`
-	WorkerID             int    `json:"workerID"`
+	WorkerID             string `json:"workerID"`
 	WorksType            string `json:"worksType"`
 	WorksDescription     string `json:"worksDescription"`
 	PreferredTime        string `json:"preferredTime"`
@@ -44,7 +44,7 @@ type Workerpost struct {
 }
 
 type Skills struct {
-	WorkerID        int    `json:"workerID"`
+	WorkerID        string `json:"workerID"`
 	SkillsName      string `json:"skillsName"`
 	PreferredAmount int    `json:"preferredAmount"`
 	Rating          int    `json:"rating"`
@@ -52,17 +52,17 @@ type Skills struct {
 
 type Review struct {
 	ReviewNo   int    `json:"reviewNo"`
-	ClientID   int    `json:"clientID"`
-	WorkerID   int    `json:"workerID"`
+	ClientID   string `json:"clientID"`
+	WorkerID   string `json:"workerID"`
 	SkillsName string `json:"skillsName"`
-	Stars 	int    `json:"stars"`
-	Comment	string `json:"comment"`
+	Stars      int    `json:"stars"`
+	Comment    string `json:"comment"`
 }
 
 type Subscription struct {
-	ClientID int `json:"clientID"`
-	SubscriptionType string `json:"subscriptionType"`
-	SubscriptionAmount int `json:"subscriptionAmount"`
-	StartDate string `json:"startDate"`
-	EndDate string `json:"endDate"`
+	ClientID           string `json:"clientID"`
+	SubscriptionType   string `json:"subscriptionType"`
+	SubscriptionAmount int    `json:"subscriptionAmount"`
+	StartDate          string `json:"startDate"`
+	EndDate            string `json:"endDate"`
 }
