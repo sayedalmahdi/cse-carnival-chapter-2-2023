@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="_R_HomePage.css">
+    <script src="_R_HomePage.js" defer></script>
+    <script src="https://kit.fontawesome.com/f4d2c8c827.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="allElements">
+        <div class="searchBox">
+            <input type="text" placeholder="Search...">
+            <a href="#">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+        </div>
+        <div class="boxElements" onclick="openForm()">
+            <p><b>Post</b></p>
+            <a href="#">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+        <div class="boxElements">
+            <p><b>Profile</b></p>
+            <a href="#">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+        <div class="boxElements">
+            <p><b>Premium</b></p>
+            <a href="#">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </a>
+        </div>
+        <div class="boxElements">
+            <p><b>Logout</b></p>
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </div>
+
+    <main id="styleForm">
+        <div class="box">    
+            <div class="inner-box">
+                
+                <div class="forms-wrap">
+                    <i class="fa-solid fa-xmark" onclick="closeForm()"></i>
+                    <form action="loginRegistration.html" autocomplete="off" class="sign-in-form">
+                        <div class="logo">
+                            <img src="../Images/logo.png" alt="logo">
+                            <h4>Handy Hire</h4>
+                        </div>
+
+                        <div class="heading">
+                            <h2>Post Here</h2>
+                            <h6>Get yourself a desirable worker</h6>
+                        </div>
+
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <select>
+                                    <option>Worker Type</option>
+                                    <option>Electrician</option>
+                                    <option>Plumber</option>
+                                    <option>Labor</option>
+                                    <option>Type Writer</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Work Details</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" onfocus="this.type='date'" onblur="this.type='text'" autocomplete="off" class="input-field" required>
+                                <label>Prefered Date</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="number" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Offered Price</label>
+                            </div>
+
+                            <input type="submit" value="POST" class="sign-btn" onclick="toHomePage()">
+
+                            
+                        </div>
+                    </form>
+                </div>
+
+                <div class="carousel">
+                    <div class="images-wrapper">
+                        <img src="../Images/animationPicture.png" class="image img-1 show" alt="">
+                        <img src="../Images/animationPicture2.png" class="image img-2" alt="">
+                        <img src="../Images/animationPicture3.png" class="image img-3" alt="">
+                    </div>
+
+                    <div class="text-slider">
+                        <div class="text-wrap">
+                            <div class="text-group">
+                                <h2>Post It</h2>
+                                <h2>Select It</h2>
+                                <h2>Hire It</h2>
+                            </div>
+                        </div>
+
+                        <div class="bullets">
+                            <span class="bull-1 active" data-value="1"></span>
+                            <span class="bull-2 data-value="2"></span>
+                            <span class="bull-3 data-value="3"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+</body>
+</html>
