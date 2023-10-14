@@ -42,12 +42,12 @@ function moveSlider(){
 }
 
 function openForm(){
-    styleForm.classList.add("openForm");
+    styleForm.style.display = "block";
 }
 
 function closeForm(){
     //console.log("Here");
-    styleForm.classList.remove("openForm");
+    styleForm.style.display = "none";
 }
 
 moveSlider();

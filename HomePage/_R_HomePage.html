@@ -43,94 +43,10 @@
         </div>
     </div>
 
-    <div class="formContainer">
-        <div class="box" id="styleForm">   
-            <i class="fa-solid fa-xmark" onclick="closeForm()"></i> 
-            <div class="inner-box">
-                <div class="forms-wrap">
-                    
-                    <form action="loginRegistration.html" autocomplete="off" class="sign-in-form">
-                        <div class="logo">
-                            <img src="../Images/logo.png" alt="logo">
-                            <h4>Handy Hire</h4>
-                        </div>
 
-                        <div class="heading">
-                            <h2>Post Here</h2>
-                            <h6>Get yourself a desirable worker</h6>
-                        </div>
-
-                        <div class="actual-form">
-                            <div class="input-wrap">
-                                <select>
-                                    <option>Worker Type</option>
-                                    <option>Electrician</option>
-                                    <option>Plumber</option>
-                                    <option>Labor</option>
-                                    <option>Type Writer</option>
-                                    <option>Others</option>
-                                </select>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
-                                <label>Work Details</label>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="text" onfocus="this.type='date'" onblur="this.type='text'" autocomplete="off" class="input-field" required>
-                                <label>Prefered Date</label>
-                            </div>
-                            <div class="input-wrap">
-                                <input type="number" minlength="4" autocomplete="off" class="input-field" required>
-                                <label>Offered Price</label>
-                            </div>
-
-                            <input type="submit" value="POST" class="sign-btn" onclick="toHomePage()">
-
-                            
-                        </div>
-                    </form>
-                </div>
-
-                <div class="carousel">
-                    <div class="images-wrapper">
-                        <img src="../Images/animationPicture.png" class="image img-1 show" alt="">
-                        <img src="../Images/animationPicture2.png" class="image img-2" alt="">
-                        <img src="../Images/animationPicture3.png" class="image img-3" alt="">
-                    </div>
-
-                    <div class="text-slider">
-                        <div class="text-wrap">
-                            <div class="text-group">
-                                <h2>Post It</h2>
-                                <h2>Select It</h2>
-                                <h2>Hire It</h2>
-                            </div>
-                        </div>
-
-                        <div class="bullets">
-                            <span class="bull-1 active" data-value="1"></span>
-                            <span class="bull-2 data-value="2"></span>
-                            <span class="bull-3 data-value="3"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
+    <div class="container relation">
         <h2> Hot Deals </h2>
-        <div class="container-details content-section" id="content-section">
-            <div class="card eventAdd">
-                <img src="../Images/Fahad.jpg">
-                <h3>Plumber</h3>
-                <h5>Abdur Karim</h5>
-                <ul>
-                    <li>Earned Points : 1200</li>
-                </ul>
-                <input type="submit" value="Hire" class="sign-btn hire">
-            </div>
-
+        <div class="container-details content-section">
             <div class="card eventAdd">
                 <img src="../Images/Fahad.jpg">
                 <h3>Plumber</h3>
@@ -142,6 +58,42 @@
             </div>
         </div>
     </div>
+
+    <div class="form-popup relation" id="styleForm">
+        <i class="fa-regular fa-circle-xmark" onclick="closeForm()"></i>
+        <div class="form-box login">
+            
+            <div class="form-content">
+                <h2>POST</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <select>
+                            <option>Select type</option>
+                            <option>Electrician</option>
+                            <option>Plumber</option>
+                            <option>Type Writter</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Description</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Prefered Time</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" required>
+                        <label>Offer Price</label>
+                    </div>
+                    
+                    <button type="submit">POST</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
 
 
 
