@@ -1,7 +1,16 @@
 import { FaBars } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
+import useConsultant from "../../../hooks/useConsultant";
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 const NavigationBar = () => {
-    const user = false;
+  const { logOut, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  const [isConsultant] = useConsultant();
+  const isCustomer = isAdmin == true || isConsultant == true ? false : true;
+
   const navItems = (
     <>
       <NavLink to="/" className="font-bold mx-5 my-2 md:my-0 hover:border">
@@ -19,6 +28,30 @@ const NavigationBar = () => {
       >
         Services
       </NavLink>
+      {user && isAdmin && (
+        <NavLink
+          to="/dashboard/adminhome"
+          className="font-bold mx-5 my-2 md:my-0 hover:border"
+        >
+          Dashboard
+        </NavLink>
+      )}
+      {user && isConsultant && (
+        <NavLink
+          to="/dashboard/consultanthome"
+          className="font-bold mx-5 my-2 md:my-0 hover:border"
+        >
+          Dashboard
+        </NavLink>
+      )}
+      {user && isCustomer && (
+        <NavLink
+          to="/dashboard/customerhome"
+          className="font-bold mx-5 my-2 md:my-0 hover:border"
+        >
+          Dashboard
+        </NavLink>
+      )}
     </>
   );
   return (
@@ -42,9 +75,7 @@ const NavigationBar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button
-            className="py-1 px-2 mx-1 rounded hover:bg-[#af2963] font-semibold md:my-0 text-white border"
-          >
+          <button className="py-1 px-2 mx-1 rounded hover:bg-[#af2963] font-semibold md:my-0 text-white border">
             Log out
           </button>
         ) : (
