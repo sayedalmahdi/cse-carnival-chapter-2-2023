@@ -13,13 +13,37 @@ import (
 )
 
 
+// check if the client already exists or not
+func checkClient(clientID string) bool {
+	db, _ := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
+	defer db.Close()
+	var client models.Client
+	err := db.QueryRow("SELECT * FROM client WHERE clientID = ?", clientID).Scan(&client.ClientID)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return false
+		} else {
+			panic(err.Error())
+		}
+	}
+
+	return true
+}
+
 // signup for client
 func SignupClient(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Allow-Control-Allow-Methods", "POST")
 
 	var client models.Client
-	_ = json.NewDecoder(r.Body).Decode(&client)
+	err := json.NewDecoder(r.Body).Decode(&client)
+
+	if err != nil {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
+	}
 
 	// null check
 	if client.ClientID == "" || client.Password == "" {
@@ -30,6 +54,12 @@ func SignupClient(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//: user already exists check
+	if checkClient(client.ClientID) == true {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "user already exists!"})
+		return
+	}
 
 	// insert into database
 	db, _ := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
@@ -47,23 +77,53 @@ func SignupClient(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode("Signup successful!")
 }
 
+// check if the worker already exists or not
+func checkWorker(workerID string) bool {
+	db, _ := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
+	defer db.Close()
+	var worker models.Worker
+	err := db.QueryRow("SELECT * FROM worker WHERE workerID = ?", workerID).Scan(&worker.WorkerID)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return false
+		} else {
+			panic(err.Error())
+		}
+	}
+
+	return true
+}
+
 // signup for worker
 func SignupWorker(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Allow-Control-Allow-Methods", "POST")
 
 	var worker models.Worker
-	_ = json.NewDecoder(r.Body).Decode(&worker)
+	err := json.NewDecoder(r.Body).Decode(&worker)
+
+	if err != nil {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
+	}
 
 	// null check
 	if worker.WorkerID == "" || worker.Password == "" {
 		// set response header as forbidden
 		w.WriteHeader(http.StatusForbidden)
-		json.NewEncoder(w).Encode(map[string]string{"message": "user id and password are required!"})
+		json.NewEncoder(w).Encode(map[string]string{"message": "worker id and password are required!"})
 		return
 	}
 
 	//: user already exists check
+	if checkWorker(worker.WorkerID) == true {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "worker already exists!"})
+		return
+	}
 
 	// insert into database
 	db, _ := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
@@ -78,7 +138,7 @@ func SignupWorker(w http.ResponseWriter, r *http.Request) {
 
 	// set response header as ok
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode("Signup successful!")
+	json.NewEncoder(w).Encode(map[string]string{"message": "Signup successful!"})
 }
 
 

@@ -1,7 +1,7 @@
 package models
 
 type Client struct {
-	ClientID  string    `json:"clientID"`
+	ClientID  string `json:"clientID"`
 	Password  string `json:"password"`
 	Name      string `json:"name"`
 	ContactNo string `json:"contactNo"`
@@ -21,7 +21,7 @@ type Clientpost struct {
 }
 
 type Worker struct {
-	WorkerID         string    `json:"workerID"`
+	WorkerID         string `json:"workerID"`
 	Password         string `json:"password"`
 	Name             string `json:"name"`
 	ContactNo        string `json:"contactNo"`
@@ -55,14 +55,14 @@ type Review struct {
 	ClientID   int    `json:"clientID"`
 	WorkerID   int    `json:"workerID"`
 	SkillsName string `json:"skillsName"`
-	Stars 	int    `json:"stars"`
-	Comment	string `json:"comment"`
+	Stars      int    `json:"stars"`
+	Comment    string `json:"comment"`
 }
 
 type Subscription struct {
-	ClientID int `json:"clientID"`
-	SubscriptionType string `json:"subscriptionType"`
-	SubscriptionAmount int `json:"subscriptionAmount"`
-	StartDate string `json:"startDate"`
-	EndDate string `json:"endDate"`
+	ClientID           int    `json:"clientID"`
+	SubscriptionType   string `json:"subscriptionType"`
+	SubscriptionAmount int    `json:"subscriptionAmount"`
+	StartDate          string `json:"startDate"`
+	EndDate            string `json:"endDate"`
 }
