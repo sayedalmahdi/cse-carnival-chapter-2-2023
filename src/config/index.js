@@ -6,12 +6,13 @@ dotenv.config({ path: path.join(process.cwd(), ".env") });
 module.exports = {
   env: process.env.NODE_ENV,
 
-  port: process.env.PORT,
+  port: process.env.PORT || 3000,
+  
 
   db: {
     host: process.env.HOST,
     database_port: process.env.DATABASE_PORT,
-    //database: process.env.DATABASE,
+    database: process.env.DATABASE,
     user: process.env.USER,
     password: process.env.PASSWORD,
   },

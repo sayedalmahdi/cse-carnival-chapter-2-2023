@@ -1,6 +1,7 @@
 const app = require("./app");
 const { port } = require("./config");
 const pool = require("./pool");
+require('dotenv').config();
 
 async function main() {
   try {
@@ -13,7 +14,8 @@ async function main() {
     });
 
     // pool.query(
-    //   "CREATE TABLE IF NOT EXISTS users ( id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, gender ENUM('Male', 'Female', 'Other') NOT NULL, designation VARCHAR(255), phoneNumber VARCHAR(15) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL )",
+    //   "CREATE TABLE IF NOT EXISTS LU_hack.Users (UserID INT PRIMARY KEY,NID VARCHAR(255) UNIQUE,Username VARCHAR(255),Password VARCHAR(255),Email VARCHAR(255),FirstName VARCHAR(255),LastName VARCHAR(255),DateOfBirth DATE,PhoneNumber VARCHAR(15),Address VARCHAR(255),VerificationStatus VARCHAR(50))",
+    
     //   (error) => {
     //     if (error) {
     //       console.log(`error occurred while creating users table ${error}`);
@@ -22,6 +24,8 @@ async function main() {
     //     }
     //   }
     // );
+
+    const port = process.env.PORT || 3000;
 
     app.listen(port, () => {
       console.log(`app listening on port ${port} | http://localhost:${port}`);
