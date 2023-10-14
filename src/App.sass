@@ -8,3 +8,36 @@ body, html
 .avatar-uploader
   width: auto !important
   margin-bottom: 20px
+  padding: 20px
+
+.message-container
+  padding: 10px 15px
+  border-radius: 15px
+  margin-bottom: 10px
+
+  word-wrap: break-word
+  white-space: normal
+  overflow: hidden
+  text-overflow: ellipsis
+  text-align: right
+  margin-left: auto // Aligns the bubbles to the right
+
+.sent-message
+  background-color: white
+  color: black
+  align-self: flex-end
+
+.received-message
+  background-color: white
+  color: black
+  align-self: flex-start
+
+.opaque-header
+  background-color: black
+  opacity: 1
+  transition: background-color 0.3s ease
+
+.transparent-header
+  background-color: transparent
+  opacity: 0.9
+  transition: background-color 0.3s ease
