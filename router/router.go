@@ -3,7 +3,8 @@ package router
 import (
 	//"handyHire/controller"
 
-	authentication "handyHire/Authentication"
+	"handyHire/Authentication"
+	"handyHire/profile"
 
 	"github.com/gorilla/mux"
 )
@@ -17,5 +18,11 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/signinClient", authentication.SigninClient).Methods("POST") // signin for client
 	router.HandleFunc("/api/signinWorker", authentication.SigninWorker).Methods("POST") // signin for worker
 
+
+	// profile
+	router.HandleFunc("/api/client/{clientID}", profile.GetClientInfo).Methods("GET") // get client profile info
+	router.HandleFunc("/api/worker/{workerID}", profile.GetWorkerInfo).Methods("GET") // get worker profile info
+
+	
 	return router
 }
