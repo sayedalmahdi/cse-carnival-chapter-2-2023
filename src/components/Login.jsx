@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Modal, Form, Input, Checkbox, message } from "antd";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useStateValue } from "../state/StateProvider";
 
 const Login = () => {
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -35,11 +36,11 @@ const Login = () => {
 
 	return (
 		<>
-			<Button type="primary" onClick={showModal}>
+			<Button type='primary' onClick={showModal}>
 				Open Modal
 			</Button>
 			<Modal
-				className="custom-modal"
+				className='custom-modal'
 				title={<h3>Login</h3>}
 				visible={isModalOpen}
 				onOk={handleOk}
@@ -48,18 +49,18 @@ const Login = () => {
 			>
 				<Form
 					requiredMark={false}
-					layout="vertical"
-					name="basic"
+					layout='vertical'
+					name='basic'
 					initialValues={{
 						remember: true,
 					}}
 					onFinish={onFinish}
 					onFinishFailed={onFinishFailed}
-					autoComplete="off"
+					autoComplete='off'
 				>
 					<Form.Item
-						label="Email"
-						name="email"
+						label='Email'
+						name='email'
 						rules={[
 							{
 								required: true,
@@ -75,8 +76,8 @@ const Login = () => {
 					</Form.Item>
 
 					<Form.Item
-						label="Password"
-						name="password"
+						label='Password'
+						name='password'
 						rules={[
 							{
 								required: true,
@@ -88,8 +89,8 @@ const Login = () => {
 					</Form.Item>
 
 					<Form.Item
-						name="remember"
-						valuePropName="checked"
+						name='remember'
+						valuePropName='checked'
 						wrapperCol={{
 							offset: 0,
 							span: 24,
@@ -99,7 +100,7 @@ const Login = () => {
 					</Form.Item>
 
 					<Form.Item>
-						<Button type="primary" htmlType="submit" block>
+						<Button type='primary' htmlType='submit' block>
 							Submit
 						</Button>
 					</Form.Item>

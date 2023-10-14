@@ -12,7 +12,7 @@ const stripe = require("stripe")(
 admin.initializeApp();
 const db = admin.firestore();
 
-const SITE_URL = "localhost:5173";
+const SITE_URL = "https://www.google.com";
 
 exports.createPaymentSession = functions.https.onCall(async (data, ctx) => {
 	const userData = await getUser(ctx);

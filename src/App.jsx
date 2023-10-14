@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged(async (userCredenetials) => {
-      if (userCredenetials && userCredenetials.emailVerified) {
+      if (userCredenetials) {
         setLoading(true);
         const userData = (
           await getDoc(doc(db, "users", userCredenetials.uid))
@@ -26,7 +26,6 @@ function App() {
         console.log(userData);
 
         action({ type: SET_USER, payload: { user: userData } });
-        navigate("/dashboard");
       } else {
         console.log(location.pathname);
         action({ type: SET_USER, payload: { user: null } });

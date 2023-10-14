@@ -14,7 +14,7 @@ const Payment = () => {
 	const handlePayment = async () => {
 		setLoading(true);
 		try {
-			const res = await createPaymentSession();
+			const res = await createPaymentSession({ guideId: "b" });
 
 			console.log(res.data);
 			if (res.data.ok) window.location.href = res.data.url;
