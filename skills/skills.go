@@ -35,10 +35,10 @@ func InsertSkills(w http.ResponseWriter, r *http.Request) {
 
 	if insertSkillsInDb(skills) {
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Skills inserted successfully!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Skills inserted successfully!"})
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Skills insertion failed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Skills insertion failed!"})
 	}
 }
 
@@ -89,8 +89,6 @@ func GetWorkerSkills(w http.ResponseWriter, r *http.Request) {
 
 	allSkills := getWorkerSkillsFromDb(workerID)
 
-	getWorkerSkillsFromDb(workerID)
-
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(allSkills)
 }
@@ -100,7 +98,7 @@ func updateSkillsInDb(skills models.Skills) bool {
 	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/handyhire")
 	defer db.Close()
 
-	updateSkills, err := db.Query("UPDATE skills SET preferredAmount = ?, rating = ? WHERE workerID = ? AND skillsName = ?", skills.PreferredAmount, skills.Rating, skills.WorkerID, skills.SkillsName)
+	updateSkills, err := db.Query("UPDATE skills SET prferredAmount = ?, rating = ? WHERE workerID = ? AND skillsName = ?", skills.PreferredAmount, skills.Rating, skills.WorkerID, skills.SkillsName)
 	defer updateSkills.Close()
 
 	if err != nil {
@@ -124,16 +122,16 @@ func UpdateSkills(w http.ResponseWriter, r *http.Request) {
 	// workerID and skillsName can not be updated
 	if workerID != skills.WorkerID || skillsName != skills.SkillsName {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode([]byte(`{"message": "WorkerID and skillsName can not be updated!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "workerID and skillsName can not be updated!"})
 		return
 	}
 
 	if updateSkillsInDb(skills) {
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Skills updated successfully!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Skills updated successfully!"})
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Skills updation failed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Skills updation failed!"})
 	}
 }
 
@@ -162,9 +160,9 @@ func DeleteSkills(w http.ResponseWriter, r *http.Request) {
 
 	if deleteSkillsFromDb(workerID, skillsName) {
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Skills deleted successfully!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Skills deleted successfully!"})
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Skills deletion failed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Skills deletion failed!"})
 	}
 }
