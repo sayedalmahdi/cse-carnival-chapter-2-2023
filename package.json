@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "antd": "^5.9.4",
     "autoprefixer": "^10.4.16",
     "firebase": "^10.5.0",
