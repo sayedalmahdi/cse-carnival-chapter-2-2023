@@ -107,27 +107,7 @@ const SignUpAsUser = () => {
             }}
             scrollToFirstError
           >
-            {/* <Form.Item
-              name="pic"
-              label="Profile Picture"
-              valuePropName="fileList"
-              getValueFromEvent={(e) => e.fileList}
-            >
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                showUploadList={false}
-              >
-                {imageUrl ? (
-                  <Avatar src={imageUrl} size={100} />
-                ) : (
-                  <div>
-                    <UploadOutlined />
-                    <div style={{ marginTop: 8 }}>Upload</div>
-                  </div>
-                )}
-              </Upload>
-            </Form.Item> */}
+
             <Form.Item
               name="email"
               label="E-mail"
