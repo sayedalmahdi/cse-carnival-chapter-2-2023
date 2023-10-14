@@ -32,10 +32,10 @@ func InsertReview(w http.ResponseWriter, r *http.Request) {
 
 	if insertReviewInDb(review) {
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Review inserted successfully!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Review inserted successfully!"})
 	} else {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "Review insertion failed!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "Review insertion failed!"})
 	}
 }
 
@@ -121,21 +121,21 @@ func UpdateReview(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "reviewNo should be int!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "reviewNo should be int!"})
 		return
 	}
 
 	// check if reviewNo, clientID, workerID, skillsName is matched
 	if review.ReviewNo != reviewNoInt || review.ClientID != clientID || review.WorkerID != workerID || review.SkillsName != skillsName {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode([]byte(`{"message": "reviewNo, clientID, workerID, skillsName is not matched!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "reviewNo, clientID, workerID, skillsName can not be updated!"})
 		return
 	}
 
 	updateReviewInDb(review)
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode([]byte(`{"message": "Review updated successfully!"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "Review updated successfully!"})
 }
 
 // delete review from database
@@ -165,12 +165,12 @@ func DeleteReview(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(http.StatusForbidden)
-		json.NewEncoder(w).Encode([]byte(`{"message": "reviewNo should be int!"}`))
+		json.NewEncoder(w).Encode(map[string]string{"message": "reviewNo should be int!"})
 		return
 	}
 
 	deleteReviewFromDb(reviewNoInt)
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode([]byte(`{"message": "Review deleted successfully!"}`))
+	json.NewEncoder(w).Encode(map[string]string{"message": "Review deleted successfully!"})
 }
