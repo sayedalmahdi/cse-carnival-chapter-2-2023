@@ -12,7 +12,7 @@ type Client struct {
 
 type Clientpost struct {
 	PostID               int    `json:"postID"`
-	ClientID             int    `json:"clientID"`
+	ClientID             string `json:"clientID"`
 	WorksType            string `json:"worksType"`
 	WorksDescription     string `json:"worksDescription"`
 	PreferredTime        string `json:"preferredTime"`
@@ -35,7 +35,7 @@ type Worker struct {
 
 type Workerpost struct {
 	PostID               int    `json:"postID"`
-	WorkerID             int    `json:"workerID"`
+	WorkerID             string `json:"workerID"`
 	WorksType            string `json:"worksType"`
 	WorksDescription     string `json:"worksDescription"`
 	PreferredTime        string `json:"preferredTime"`
@@ -44,7 +44,7 @@ type Workerpost struct {
 }
 
 type Skills struct {
-	WorkerID        int    `json:"workerID"`
+	WorkerID        string `json:"workerID"`
 	SkillsName      string `json:"skillsName"`
 	PreferredAmount int    `json:"preferredAmount"`
 	Rating          int    `json:"rating"`
@@ -52,15 +52,15 @@ type Skills struct {
 
 type Review struct {
 	ReviewNo   int    `json:"reviewNo"`
-	ClientID   int    `json:"clientID"`
-	WorkerID   int    `json:"workerID"`
+	ClientID   string `json:"clientID"`
+	WorkerID   string `json:"workerID"`
 	SkillsName string `json:"skillsName"`
 	Stars      int    `json:"stars"`
 	Comment    string `json:"comment"`
 }
 
 type Subscription struct {
-	ClientID           int    `json:"clientID"`
+	ClientID           string    `json:"clientID"`
 	SubscriptionType   string `json:"subscriptionType"`
 	SubscriptionAmount int    `json:"subscriptionAmount"`
 	StartDate          string `json:"startDate"`
