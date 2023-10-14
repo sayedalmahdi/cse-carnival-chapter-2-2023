@@ -41,7 +41,7 @@ const Dashboard = () => {
         )}
         {isConsultant && (
           <div className="w-1/5 space-y-2">
-            <Link to="/dashboard/instructorhome">
+            <Link to="/dashboard/consultanthome">
               <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
                 <FaHome></FaHome>Home
               </button>
@@ -65,7 +65,7 @@ const Dashboard = () => {
                 <FaHome></FaHome>Home
               </button>
             </Link>
-            <Link to="/dashboard/allclasses">
+            <Link to="/dashboard/manageServices">
               <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
                 <FaRegAddressBook></FaRegAddressBook>All Services
               </button>

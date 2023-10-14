@@ -6,6 +6,10 @@ import Error from "../pages/Error/Error";
 import Consultants from "../pages/Consultants/Consultants";
 import Dashboard from "../layout/Dashboard";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import ManageServices from "../pages/Dashboard/Admin/ManageServices/ManageServices";
+import ConsultantHome from '../pages/Dashboard/Consultant/ConsultantHome/ConsultantHome';
+import MyServices from "../pages/Dashboard/Consultant/MyServices/MyServices";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -33,6 +37,22 @@ const router = createBrowserRouter([
             {
                 path:"adminhome",
                 element: <AdminHome></AdminHome>
+            },
+            {
+                path:"manageUsers",
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path:"manageServices",
+                element: <ManageServices></ManageServices>
+            },
+            {
+                path: "consultanthome",
+                element: <ConsultantHome></ConsultantHome>
+            },
+            {
+                path: "myservices",
+                element: <MyServices></MyServices>
             }
         ]
     }
