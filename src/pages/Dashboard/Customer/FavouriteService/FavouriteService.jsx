@@ -21,7 +21,8 @@ const FavouriteService = () => {
             consultantEmail:user.consultantMail,
             profession: user.profession,
             appoinmentTime: document.getElementById('localTime').value,
-            message: document.getElementById('message').value
+            message: document.getElementById('message').value,
+            rate: user.rate
         }
         fetch('http://localhost:5000/requestAppointment', {
         method: 'POST',
@@ -55,6 +56,7 @@ const FavouriteService = () => {
                           <th className="text-2xl">Email</th>
                           <th className="text-2xl">Consultant Email</th>
                             <th className="text-2xl">Profession</th>
+                            <th className="text-2xl">Rate per hour</th>
                             <th className="text-2xl">Message</th>
                             <th className="text-2xl">Time</th>
                             <th className="text-2xl">Send Request</th>
@@ -68,6 +70,7 @@ const FavouriteService = () => {
                                 <td>{user.email}</td>
                                 <td>{user.consultantMail}</td>
                                 <td>{user.profession}</td>
+                                <td>{user.rate}</td>
                                 <td>
                                     <input type="text" name="message" id="message" className='input input-bordered'/>
                                 </td>

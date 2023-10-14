@@ -1,4 +1,4 @@
-import { sendEmailVerification } from "firebase/auth";
+// import { sendEmailVerification } from "firebase/auth";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";

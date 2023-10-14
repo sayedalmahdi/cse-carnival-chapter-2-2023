@@ -68,6 +68,7 @@ const Appointment = () => {
                             <th className="text-2xl">Profession</th>
                             <th className="text-2xl">Message</th>
                             <th className="text-2xl">Time</th>
+                            <th className="text-2xl">Rate</th>
                             <th className="text-2xl">Accept</th>
                             <th className="text-2xl">Delete</th>
                     </tr>
@@ -82,6 +83,7 @@ const Appointment = () => {
                                 <td>{user.profession}</td>
                                 <td>{user.message}</td>
                                 <td>{user.appoinmentTime}</td>
+                                <td>{user.rate}</td>
                                 <td>
                                     {
                                   <button onClick={() => handleAcceptRequest(user)} className="btn btn-ghost p-5" disabled={user?.status}>Accept</button>

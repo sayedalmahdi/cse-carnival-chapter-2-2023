@@ -17,6 +17,7 @@ import CustomerHome from "../pages/Dashboard/Customer/CustomerHome/CustomerHome"
 import FavouriteService from "../pages/Dashboard/Customer/FavouriteService/FavouriteService";
 import Appointment from "../pages/Dashboard/Consultant/Appointment/Appointment";
 import MyAppointment from "../pages/Dashboard/Customer/MyAppointment/MyAppointment";
+import Payment from "../pages/Dashboard/Payment/Payment";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -90,6 +91,11 @@ const router = createBrowserRouter([
             {
                 path: "myAppointment",
                 element: <MyAppointment></MyAppointment>
+            },
+            {
+                path: 'payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params})=>fetch(`http://localhost:5000/payment/${params.id}`)
             }
         ]
     }
