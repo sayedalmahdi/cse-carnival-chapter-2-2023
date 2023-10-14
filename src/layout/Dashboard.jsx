@@ -15,7 +15,7 @@ import NavigationBar from "../pages/Shared/NavigationBar/NavigationBar";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Dashboard = () => {
-  const { loading } = useContext(AuthContext);
+  const {loading } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [isConsultant] = useConsultant();
   const isCustomer = isAdmin == true || isConsultant == true ? false : true;
