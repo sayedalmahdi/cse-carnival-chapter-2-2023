@@ -1,0 +1,83 @@
+CREATE TABLE client (
+    clientID INT,
+    password VARCHAR(255),
+    name VARCHAR(255),
+    contactNo VARCHAR(255),
+    nidNo VARCHAR(255),
+    email VARCHAR(255),
+    address VARCHAR(255),
+
+    PRIMARY KEY (clientID)
+);
+
+CREATE TABLE clientpost (
+    postID INT AUTO_INCREMENT PRIMARY KEY,
+    clientID INT,
+    worksType VARCHAR(255),
+    worksDescription VARCHAR(255),
+    preferredTime DATE,
+    offeredPrice INT,
+    postAvailabilityTime DATE,
+
+    FOREIGN KEY (clientID) REFERENCES client(clientID)
+);
+
+CREATE TABLE worker (
+    workerID INT,
+    password VARCHAR(255),
+    name VARCHAR(255),
+    contactNo VARCHAR(255),
+    nidNo VARCHAR(255),
+    email VARCHAR(255),
+    address VARCHAR(255),
+    workerDescription VARCHAR(255),
+    earnedPoint INT,
+    availability TINYINT(1),
+
+    PRIMARY KEY (workerID)
+);
+
+CREATE TABLE workerpost (
+    postID INT AUTO_INCREMENT PRIMARY KEY,
+    workerID INT,
+    worksType VARCHAR(255),
+    worksDescription VARCHAR(255),
+    preferredTime DATE,
+    offeredPrice INT,
+    postAvailabilityTime DATE,
+
+    FOREIGN KEY (workerID) REFERENCES worker(workerID)
+);
+
+CREATE TABLE subscription (
+    clientID INT,
+    subscriptionType VARCHAR(255),
+    subscriptionAmount INT,
+    startDate DATE,
+    endDate DATE,
+
+    PRIMARY KEY (clientID),
+    FOREIGN KEY (clientID) REFERENCES client(clientID)
+);
+
+CREATE TABLE review (
+    reviewNo INT AUTO_INCREMENT PRIMARY KEY,
+    clientID INT,
+    workerID INT,
+    skillsName VARCHAR(255),
+    stars INT,
+    comment VARCHAR(255),
+
+    FOREIGN KEY (clientID) REFERENCES client(clientID),
+    FOREIGN KEY (workerID) REFERENCES worker(workerID)
+);
+
+CREATE TABLE skills (
+    workerID INT,
+    skillsName VARCHAR(255),
+    prferredAmount INT,
+    rating INT,
+
+    PRIMARY KEY (workerID, skillsName),
+    FOREIGN KEY (workerID) REFERENCES worker(workerID)
+)
