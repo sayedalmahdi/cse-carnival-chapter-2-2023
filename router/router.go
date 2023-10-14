@@ -8,6 +8,7 @@ import (
 	"handyHire/profile"
 	"handyHire/review"
 	"handyHire/skills"
+	"handyHire/subscription"
 
 	"github.com/gorilla/mux"
 )
@@ -57,6 +58,11 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/skills/{workerID}/{skillsName}", skills.DeleteSkills).Methods("DELETE") // delete a specific skills of a worker
 
 
+	// subscription
+	router.HandleFunc("/api/subscription", subscription.InsertSubscription).Methods("POST") // insert subscription
+	router.HandleFunc("/api/subscription/{clientID}", subscription.GetClientSubscription).Methods("GET") // get subscription of a client
+	// delete a subscription of a client
+	router.HandleFunc("/api/subscription/{clientID}", subscription.DeleteClientSubscription).Methods("DELETE") // delete subscription of a client
 
 	return router
 }
