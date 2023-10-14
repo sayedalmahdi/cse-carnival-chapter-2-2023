@@ -1,44 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
 <head>
-  <style>
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  <meta charset="UTF-8">
+  <title>CodePen - Custom properties step progress indicator</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/dashboard_style.css">
 
-    .descriptions {
-      flex: 1;
-      padding: 20px;
-    }
-
-    .form {
-      flex: 1;
-      padding: 20px;
-      background-color: #f0f0f0;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="descriptions">
-      <h2>Descriptions</h2>
-      <p>This is some description text on the left side.</p>
-      <p>You can add more content here.</p>
-    </div>
-    <div class="form">
-      <h2>Form</h2>
-      <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-        
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email"><br><br>
-        
-        <input type="submit" value="Submit">
-      </form>
-    </div>
+<!-- partial:index.partial.html -->
+<ol style="--length: 5" role="list">
+  <li style="--i: 2">
+		<h3 class="text-white">Emergency care</h3>
+		<p class="text-white">Make a call to get emergency service.</p>
+    
+
+    <div class="d-flex align-items-center justify-content-center services-list">
+      <button id="book-appointment" type="button" class="btn btn-white-outline">Call</button>
   </div>
+	</li>
+	<li style="--i: 2">
+		<h3 class="text-white">Find a doctor</h3>
+		<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.</p>
+	</li>
+	<li style="--i: 2">
+		<h3 class="text-white">Book an appointment</h3>
+		<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.</p>
+	</li>
+	<li style="--i: 3">
+		<h3 class="text-white">QnA Portal</h3>
+		<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique risus.</p>
+	</li>
+	
+</ol>
+<!-- partial -->
+  
 </body>
 </html>

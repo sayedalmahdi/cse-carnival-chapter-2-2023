@@ -256,6 +256,7 @@ button{
 /* grid one */
 .sc-grid-one{
     padding: 115.5px 0 114.5px 0;
+    padding: 220px 0px 250px 0px;
     background-color: var(--clr-blue);
 }
 .sc-grid-one .grid-content .title-box .title-separator{
@@ -763,3 +764,6 @@ input{
     flex: 1;
 }
 
+padding-around {
+    margin: 100px 100px 100px 100px;
+}
