@@ -1,7 +1,7 @@
 import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 const NavigationBar = () => {
-    const user = true;
+    const user = false;
   const navItems = (
     <>
       <NavLink to="/" className="font-bold mx-5 my-2 md:my-0 hover:border">
