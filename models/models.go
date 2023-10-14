@@ -60,7 +60,7 @@ type Review struct {
 }
 
 type Subscription struct {
-	ClientID           string `json:"clientID"`
+	ClientID           string    `json:"clientID"`
 	SubscriptionType   string `json:"subscriptionType"`
 	SubscriptionAmount int    `json:"subscriptionAmount"`
 	StartDate          string `json:"startDate"`
