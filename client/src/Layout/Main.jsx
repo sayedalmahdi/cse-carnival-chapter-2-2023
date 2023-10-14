@@ -1,10 +1,15 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import NavBar from '../pages/Shared/NavBar/NavBar';
 
 const Main = () => {
+
+    const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signup');
+
     return (
         <div>
-            <h2 className='text-3xl'>main</h2>
-            <button className="btn btn-neutral">Neutral</button>
+            {noHeaderFooter || <NavBar/>}
+            <Outlet/>
         </div>
     );
 };
