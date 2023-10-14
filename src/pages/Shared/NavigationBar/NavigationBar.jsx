@@ -9,7 +9,6 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const [isAdmin] = useAdmin();
   const [isConsultant] = useConsultant();
-  console.log(isAdmin)
   const isCustomer = isAdmin == true || isConsultant == true ? false : true;
 
   const navItems = (
@@ -79,6 +78,9 @@ const NavigationBar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
+        {user && (
+          <img src={user?.photoURL} className="w-8 rounded-3xl" alt="" />
+        )}
         {user ? (
           <button
             onClick={handleLogOut}
