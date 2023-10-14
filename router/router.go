@@ -4,8 +4,9 @@ import (
 	//"handyHire/controller"
 
 	"handyHire/Authentication"
-	"handyHire/profile"
 	"handyHire/HomePage"
+	"handyHire/profile"
+	"handyHire/review"
 
 	"github.com/gorilla/mux"
 )
@@ -39,6 +40,13 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/workerPost/{workerID}/{postID}", homepage.UpdateWorkerPost).Methods("PUT") // update worker post. workerID and postID can not be updated but every data should be present in request body
 	router.HandleFunc("/api/workerPost/{workerID}", homepage.GetWorkerPosts).Methods("GET") // get all worker posts of a worker
 	router.HandleFunc("/api/workerPost/{workerID}/{postID}", homepage.DeleteWorkerPost).Methods("DELETE") // delete worker post
+
+
+	// review
+	router.HandleFunc("/api/review", review.InsertReview).Methods("POST") // insert review
+	router.HandleFunc("/api/review/{workerID}/{skillsName}", review.GetWorkerReviews).Methods("GET") // get all reviews of a worker of a specific skillsName
+	router.HandleFunc("/api/review/{reviewNo}/{clientID}/{workerID}/{skillsNo}", review.UpdateReview).Methods("PUT") // update review. reviewNo, clientID, workerID and skillsNo can not be updated but every data should be present in request body
+	router.HandleFunc("/api/review/{reviewNo}", review.DeleteReview).Methods("DELETE") // delete review
 
 
 	return router
