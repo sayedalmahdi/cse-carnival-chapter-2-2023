@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+:root{
+    --backgroundColor : #ff8c6b;
+    --backgroundColor2 : #ffe0b2;
+    --boxShadow : 0 60px 40px -30px rgba(0,0,0,0.27);
+    --h4TextColor : #151111;
+    --h6TextColor : #bababa;
+    --toggleHoverColor : #8371fd;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--backgroundColor2);
+}
+
+.form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 23%;
+    max-width: 350px;
+    height: 550px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid var(--colorWhite);
+    transform: translate(-50%,-50%);
+    z-index: 2;
+}
+
+.form-popup .form-box{
+    display: flex;
+}
+
+.form-box .form-details{
+    max-width: 330px;
+    width: 100%;
+    color: black;
+    display: flex;
+    padding: 0 20px;
+    /* text-align: center; */
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    background-size: cover;
+    background-position: center;
+}
+
+.login .form-details{
+    /* background: url("Images/LoginPageImage.jpg"); */
+    /* background-size: cover;
+    background-position: center; */
+}
+
+.signup .form-details{
+    /* background: url("Images/LoginPageImage.jpg"); */
+    /* background-size: cover;
+    background-position: center; */
+}
+
+.form-details img{
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.form-details h4{
+    color: black;
+    padding: 10px 0px;
+}
+
+.skillHeading{
+    margin-top: 30px;
+}
+
+.individualSkill{
+    padding: 15px;
+    font-size: 18px;
+}
+
+.form-details button{
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 15px 0;
+    border-radius: 3px;
+    margin: 25px 0;
+    color: white;
+    cursor: pointer;
+    background: var(--backgroundColor);
+}
+
+.form-box h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-box .form-content{
+    width: 100%;
+    padding: 85px 35px;
+}
+
+form .input-field {
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* form select{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+} */
+
+form .input-field input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 0.95rem;
+    border-radius: 3px;
+    /* border: 1px solid var(--borderRadiusColor); */
+}
+
+form .input-field select{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 0.95rem;
+    border-radius: 3px;
+    /* border: 1px solid var(--borderRadiusColor); */
+}
+
+.input-field input:focus {
+    /* border-color: var(--colorLightGreen); */
+}
+
+.input-field input:is(:focus,:valid){
+    padding: 0px 15px;
+}
+
+form .input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    /* color: var(--borderRadiusColor); */
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) ~ label{
+    /* color: var(--colorGreen); */
+    font-size: 0rem;
+    transform: translateY(-120%);
+}
+
+.form-box a{
+    /* color: var(--colorGreen); */
+    text-decoration: none;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+
+.form-box .forgot-pass {
+    display: inline-flex;
+    margin-top: 14px;
+    font-size: 0.95rem;
+
+}
+form button {
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 14px 0;
+    border-radius: 3px;
+    margin: 25px 0;
+    color: white;
+    cursor: pointer;
+    background: var(--backgroundColor);
+}
+
+.fa-circle-xmark{
+    margin-left: 95%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: black;
+    color: white;
+}
+
+.form-box .bottom-link {
+    text-align: center;
+}
+
+.relation{
+    position: relative;
+}
+
+
+.form-popup .signup,
+.form-popup.show-signup .login{
+    display: none;
+}
+
+.form-popup.show-signup .signup{
+    display: flex;
+}
