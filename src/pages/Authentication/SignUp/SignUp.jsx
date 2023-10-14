@@ -1,3 +1,4 @@
+import { sendEmailVerification } from "firebase/auth";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,9 +19,113 @@ const SignUp = () => {
   const [errormsg, setErrormsg] = useState("");
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data.type)
+     if (data.password !== confirmPassword) {
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Password not matched.',
+            showConfirmButton: false,
+            timer: 700
+        });
+     } else {
+       if (data.type == "customer") {
+         createUser(data.email, data.password)
+           .then(result => {
+             updateUserProfile(result.user, data.name, data.photo);
+             verifyEmail(result.user);
+             const saveUser = {
+               name: data.name,
+               email: data.email,
+               phone: data.phone,
+               address: data.address,
+               password: data.password,
+               photo: data.photo,
+               registrationTime: new Date(),
+               status: "confirm",
+               role: "customer"
+             }
+             fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(saveUser)
+             })
+               .then(res => res.json())
+               .then(data => {
+                 if (data.insertedId) {
+                    reset();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Verify Your Email.',
+                        showConfirmButton: false,
+                        timer: 700
+                    });
+                    navigate('/');
+                 }
+               });
+         })
+       } else {
+         createUser(data.email, data.password)
+           .then(result => {
+             updateUserProfile(result.user, data.name, data.photo);
+             logOut();
+              verifyEmail(result.user);
+              const saveUser = {
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                address: data.address,
+                password: data.password,
+                photo: data.photo,
+                nid: data.nid,
+                profession: data.profession,
+                registrationTime: new Date(),
+                status: "pending",
+                role:"consultant"
+             }
+             fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(saveUser)
+             })
+              .then(res => res.json())
+              .then(data => {
+                if (data.insertedId) {
+                  reset();
+                  Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Wait For Admin Approval',
+                      showConfirmButton: false,
+                      timer: 700
+                  });
+                  navigate('/');
+                }
+             })
+           })
+         .catch(error => {
+            if (error.message.includes('email-already-in-use')) {
+                setErrormsg("Already Registered");
+            } else {
+                setErrormsg(error.message);
+            }
+        });
+       }
+       const verifyEmail = user => {
+        sendEmailVerification(user)
+          .then(result => {
+              console.log(result);
+                // alert("please Verify Your Email");
+        })
+      }
+    } 
   };
-  const handleConfim = (e) => {
+  const handleConfirm = (e) => {
     const confirmPassword = e?.target?.value;
     setConfirmPassword(confirmPassword);
   };
@@ -41,7 +146,7 @@ const SignUp = () => {
               </button>
             ) : (
               <button
-                onClick={() => setIsCustomer(true)}
+                onClick={() => {setIsCustomer(true)}}
                 className="btn btn-outline btn-accent btn-xs"
               >
                 Register as Customer
@@ -99,6 +204,20 @@ const SignUp = () => {
                 className="input input-bordered"
               />
             </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Type</span>
+              </label>
+              <input
+                value={isCustomer ? "customer" : "consultant"}
+                type="text"
+                required
+                {...register("type")}
+                name="type"
+                placeholder="ex: +8801991347811"
+                className="input input-bordered"
+              />
+            </div>
             {!isCustomer && (
               <div className="form-control">
                 <label className="label">
@@ -134,7 +253,7 @@ const SignUp = () => {
                 </label>
                 <select
                   className="text-input bg-gray-200 px-5 py-2 rounded"
-                  {...register("category")}
+                  {...register("profession")}
                 >
                   <option value="ethical-hacker">Ethical Hacker</option>
                   <option value="video-editor">Video Editor</option>
@@ -175,7 +294,7 @@ const SignUp = () => {
                 <span className="label-text">Confirm Password</span>
               </label>
               <input
-                onChange={handleConfim}
+                onChange={handleConfirm}
                 type="password"
                 required
                 placeholder="Confirm Password"
