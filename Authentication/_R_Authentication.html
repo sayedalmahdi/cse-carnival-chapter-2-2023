@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="../Authentication/_R_Authentication.css">
+    <script src="../Authentication/_R_Authentication.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="box">
+            <div class="inner-box">
+                <div class="forms-wrap">
+                    <form action="loginRegistration.html" autocomplete="off" class="sign-in-form">
+                        <div class="logo">
+                            <img src="../Images/logo.png" alt="logo">
+                            <h4>Handy Hire</h4>
+                        </div>
+
+                        <div class="heading">
+                            <h2>Welcome Back</h2>
+                            <h6>Not registered yet? </h6>
+                            <a href="#" class="toggle">Sign up</a>
+                        </div>
+
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Name</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="password" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Password</label>
+                            </div>
+
+                            <input type="submit" value="Sign In" class="sign-btn" onclick="toHomePage()">
+
+                            <p class="text">
+                                Forgotten Your password or you login details?
+                                <a href="#">Get help</a> Signing In 
+                            </p>
+                            
+                        </div>
+                    </form>
+
+
+                    <form action="loginRegistration.html" autocomplete="off" class="sign-up-form">
+                        <div class="logo">
+                            <img src="../Images/logo.png" alt="logo">
+                            <h4>Handy Hire</h4>
+                        </div>
+
+                        <div class="heading">
+                            <h2>Get Started</h2>
+                            <h6>Already have an account?</h6>
+                            <a href="#" class="toggle">Sign in</a>
+                        </div>
+
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Name</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="email" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Email</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="number" minlength="10" autocomplete="off" class="input-field" required>
+                                <label>Contact No.</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>NID No.</label>
+                            </div>
+                            <div class="input-wrap">
+                                <select class="input-field">
+                                    <option> </option>
+                                    <option>Customer</option>
+                                    <option>Worker</option>
+                                </select>
+                                <label>Registered as</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="password" minlength="4" autocomplete="off" class="input-field" required>
+                                <label>Password</label>
+                            </div>
+
+                            <input type="submit" value="Sign Up" class="sign-btn">
+
+                            <p class="text">
+                                By signing up, I agree to the <a href="#">Terms of Services</a> and <a>Privacy Policy</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="carousel">
+                    <div class="images-wrapper">
+                        <img src="../Images/animationPicture.png" class="image img-1 show" alt="">
+                        <img src="../Images/animationPicture2.png" class="image img-2" alt="">
+                        <img src="../Images/animationPicture3.png" class="image img-3" alt="">
+                    </div>
+
+                    <div class="text-slider">
+                        <div class="text-wrap">
+                            <div class="text-group">
+                                <h2>Post It</h2>
+                                <h2>Select It</h2>
+                                <h2>Hire It</h2>
+                            </div>
+                        </div>
+
+                        <div class="bullets">
+                            <span class="bull-1 active" data-value="1"></span>
+                            <span class="bull-2 data-value="2"></span>
+                            <span class="bull-3 data-value="3"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
