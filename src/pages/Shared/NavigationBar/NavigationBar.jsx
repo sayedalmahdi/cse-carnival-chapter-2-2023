@@ -9,6 +9,7 @@ const NavigationBar = () => {
   const navigate = useNavigate();
   const [isAdmin] = useAdmin();
   const [isConsultant] = useConsultant();
+  console.log(isAdmin)
   const isCustomer = isAdmin == true || isConsultant == true ? false : true;
 
   const navItems = (
