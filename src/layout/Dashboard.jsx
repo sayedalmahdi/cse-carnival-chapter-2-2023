@@ -49,6 +49,11 @@ const Dashboard = () => {
                 <FaRegCalendarCheck></FaRegCalendarCheck>Payment History
               </button>
             </Link>
+            <Link to="/dashboard/myAppointment">
+              <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
+                My Appointment
+              </button>
+            </Link>
           </div>
         )}
         {isConsultant && (
@@ -69,6 +74,12 @@ const Dashboard = () => {
                 Add New Service
               </button>
             </Link>
+            <Link to="/dashboard/appointment">
+              <button className="btn bg-[#e2136e] w-full text-white hover:bg-gray-500">
+                Appointment
+              </button>
+            </Link>
+            
           </div>
         )}
         {isAdmin && (
