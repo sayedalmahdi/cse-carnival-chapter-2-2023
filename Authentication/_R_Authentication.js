@@ -45,4 +45,8 @@ function moveSlider(){
     currentBullet.classList.add("active");
 }
 
+function toHomePage(){
+    window.location.href = "../HomePage/_R_HomePage.html";
+}
+
 moveSlider();
