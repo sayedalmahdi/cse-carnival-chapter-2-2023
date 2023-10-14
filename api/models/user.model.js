@@ -7,19 +7,25 @@ const userSchema = new mongoose.Schema({
     },
     number: {
         type: String,
-        unique: true,
+    },
+    verified: {
+        type: String,
+        required: true,
+    },
+    verificationToken: {
+        type: String,
     },
     role: {
         type: String,
         required: true,
     },
-    age:{
+    age: {
         type: Number,
         required: true,
     },
-    email:{
+    email: {
         type: String,
-        required:true,
+        required: true,
         unique: true,
     },
     password: {
