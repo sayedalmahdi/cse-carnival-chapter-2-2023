@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="_R_HomePage.css">
+    <script src="_R_HomePage.js" defer></script>
+    <script src="https://kit.fontawesome.com/f4d2c8c827.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="allElements">
+        <div class="searchBox">
+            <input type="text" placeholder="Search...">
+            <a href="#">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+        </div>
+        <div class="boxElements" onclick="openForm()">
+            <p><b>Post</b></p>
+            <a href="#">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+        <div class="boxElements">
+            <p><b>Profile</b></p>
+            <a href="#">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+        <div class="boxElements">
+            <p><b>Premium</b></p>
+            <a href="#">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </a>
+        </div>
+        <div class="boxElements">
+            <p><b>Logout</b></p>
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="container relation">
+        <h2> Hot Deals </h2>
+        <div class="container-details content-section">
+            <div class="card eventAdd">
+                <img src="../Images/Fahad.jpg">
+                <h3>Plumber</h3>
+                <h5>Abdur Karim</h5>
+                <ul>
+                    <li>Earned Points : 1200</li>
+                </ul>
+                <input type="submit" value="Hire" class="sign-btn hire">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-popup relation" id="styleForm">
+        <i class="fa-regular fa-circle-xmark" onclick="closeForm()"></i>
+        <div class="form-box login">
+            
+            <div class="form-content">
+                <h2>POST</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <select>
+                            <option>Select type</option>
+                            <option>Electrician</option>
+                            <option>Plumber</option>
+                            <option>Type Writter</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Description</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Prefered Time</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="number" required>
+                        <label>Offer Price</label>
+                    </div>
+                    
+                    <button type="submit">POST</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+</body>
+</html>
