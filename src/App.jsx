@@ -11,42 +11,40 @@ import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [{ user }, action] = useStateValue();
-  const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
+	const [{ user }, action] = useStateValue();
+	const navigate = useNavigate();
 
-  useEffect(() => {
-    auth.onAuthStateChanged(async (userCredenetials) => {
-      if (userCredenetials) {
-        setLoading(true);
-        const userData = (
-          await getDoc(doc(db, "users", userCredenetials.uid))
-        ).data();
+	useEffect(() => {
+		auth.onAuthStateChanged(async (userCredenetials) => {
+			if (userCredenetials) {
+				setLoading(true);
+				const userData = (await getDoc(doc(db, "users", userCredenetials.uid))).data();
 
-        console.log(userData);
+				console.log(userData);
 
-        action({ type: SET_USER, payload: { user: userData } });
-      } else {
-        console.log(location.pathname);
-        action({ type: SET_USER, payload: { user: null } });
-        // navigate("/");
-      }
-      setLoading(false);
-    });
-  }, []);
+				action({ type: SET_USER, payload: { user: userData } });
+			} else {
+				console.log(location.pathname);
+				action({ type: SET_USER, payload: { user: null } });
+				// navigate("/");
+			}
+			setLoading(false);
+		});
+	}, []);
 
-  return (
-    <Layout>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          {true && <ProtectedRoutes />}
-          <PublicRoutes />
-        </>
-      )}
-    </Layout>
-  );
+	return (
+		<Layout>
+			{loading ? (
+				<Spinner />
+			) : (
+				<>
+					{true && <ProtectedRoutes />}
+					<PublicRoutes />
+				</>
+			)}
+		</Layout>
+	);
 }
 
 export default App;

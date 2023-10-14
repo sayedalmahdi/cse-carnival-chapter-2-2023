@@ -11,6 +11,7 @@ const SignUpTourist = React.lazy(() => import("./components/SignUpTourist"));
 const SignUpAsGuide = React.lazy(() => import("./pages/SignUpAsGuide"));
 const GuideList = React.lazy(() => import("./pages/GuideList"));
 
+const Admin = React.lazy(() => import("./pages/Admin"));
 export const PUBLIC_ROUTES = [
 	{ path: "/", element: Home },
 	{ path: "/login", element: Login },
@@ -19,6 +20,7 @@ export const PUBLIC_ROUTES = [
 	{ path: "/tourist/guidelist", element: GuideList },
 	{ path: "/chat", element: Chat },
 	{ path: "/payment", element: Payment },
+  { path: "/admin", element: Admin}
 ];
 
 export const PROTECTED_ROUTES = [{ path: "/dashboard", element: Dashboard }];
