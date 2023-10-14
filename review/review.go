@@ -6,6 +6,8 @@ import (
 	"handyHire/models"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 // insert review in database
@@ -78,8 +80,10 @@ func getWorkerReviewsFromDb(workerID string, skillsName string) []models.Review 
 func GetWorkerReviews(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	workerID := r.URL.Query().Get("workerID")
-	skillsName := r.URL.Query().Get("skillsName")
+	// get workerID and skillsName from url
+	params := mux.Vars(r)
+	workerID := params["workerID"]
+	skillsName := params["skillsName"]
 
 	reviewsList := getWorkerReviewsFromDb(workerID, skillsName)
 
@@ -111,10 +115,11 @@ func UpdateReview(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&review)
 
 	// get reviewNo, clientID, workerID, skillsName from url
-	reviewNo := r.URL.Query().Get("reviewNo")
-	clientID := r.URL.Query().Get("clientID")
-	workerID := r.URL.Query().Get("workerID")
-	skillsName := r.URL.Query().Get("skillsName")
+	params := mux.Vars(r)
+	reviewNo := params["reviewNo"]
+	clientID := params["clientID"]
+	workerID := params["workerID"]
+	skillsName := params["skillsName"]
 
 	// convert reviewNo from string to int
 	reviewNoInt, err := strconv.Atoi(reviewNo)
@@ -158,7 +163,8 @@ func DeleteReview(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// get reviewNo from url
-	reviewNo := r.URL.Query().Get("reviewNo")
+	params := mux.Vars(r)
+	reviewNo := params["reviewNo"]
 
 	// convert reviewNo from string to int
 	reviewNoInt, err := strconv.Atoi(reviewNo)
