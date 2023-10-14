@@ -12,6 +12,11 @@ import AddServices from "../pages/Dashboard/Consultant/AddServices/AddServices";
 import Home from "../pages/Home/Home";
 import Services from "../pages/Services/Services";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import ManageServices from "../pages/Dashboard/Admin/ManageServices/ManageServices";
+import CustomerHome from "../pages/Dashboard/Customer/CustomerHome/CustomerHome";
+import FavouriteService from "../pages/Dashboard/Customer/FavouriteService/FavouriteService";
+import Appointment from "../pages/Dashboard/Consultant/Appointment/Appointment";
+import MyAppointment from "../pages/Dashboard/Customer/MyAppointment/MyAppointment";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -66,6 +71,26 @@ const router = createBrowserRouter([
                 path:"manageusers",
                 element: <ManageUsers></ManageUsers>
             },
+            {
+                path: "manageServices",
+                element: <ManageServices></ManageServices>
+            },
+            {
+                path: "customerhome",
+                element: <CustomerHome></CustomerHome>
+            },
+            {
+                path: "favouriteservices",
+                element: <FavouriteService></FavouriteService>
+            },
+            {
+                path: "appointment",
+                element: <Appointment></Appointment>
+            },
+            {
+                path: "myAppointment",
+                element: <MyAppointment></MyAppointment>
+            }
         ]
     }
 ]);

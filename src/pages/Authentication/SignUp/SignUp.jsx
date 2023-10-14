@@ -33,7 +33,7 @@ const SignUp = () => {
          createUser(data.email, data.password)
            .then(result => {
              updateUserProfile(result.user, data.name, data.photo);
-             verifyEmail(result.user);
+            //  verifyEmail(result.user);
              const saveUser = {
                name: data.name,
                email: data.email,
@@ -72,7 +72,7 @@ const SignUp = () => {
            .then(result => {
              updateUserProfile(result.user, data.name, data.photo);
              logOut();
-              verifyEmail(result.user);
+              // verifyEmail(result.user);
               const saveUser = {
                 name: data.name,
                 email: data.email,
@@ -116,13 +116,13 @@ const SignUp = () => {
             }
         });
        }
-       const verifyEmail = user => {
-        sendEmailVerification(user)
-          .then(result => {
-              console.log(result);
-                // alert("please Verify Your Email");
-        })
-      }
+      //  const verifyEmail = user => {
+      //   sendEmailVerification(user)
+      //     .then(result => {
+      //         console.log(result);
+      //           // alert("please Verify Your Email");
+      //   })
+      // }
     } 
   };
   const handleConfirm = (e) => {
@@ -209,7 +209,7 @@ const SignUp = () => {
                 <span className="label-text">Type</span>
               </label>
               <input
-                value={isCustomer ? "customer" : "consultant"}
+                defaultValue={isCustomer ? "customer" : "consultant"}
                 type="text"
                 required
                 {...register("type")}
@@ -261,6 +261,7 @@ const SignUp = () => {
                   <option value="iot-expert">IOT Expert</option>
                   <option value="os-expert">Operating System Expert</option>
                   <option value="startup-mentor">Start-up Mentor</option>
+                  <option value="software-engineer">Software Engineers</option>
                 </select>
               </div>
             )}
