@@ -6,9 +6,10 @@ import (
 
 	//"fmt"
 	"handyHire/models"
+	//"handyHire/skills"
 	"net/http"
 
-	//"github.com/gorilla/mux"
+	"github.com/gorilla/mux"
 )
 
 // insert skills in database
@@ -51,8 +52,7 @@ func getWorkerSkillsFromDb(workerID string) []models.Skills {
 		panic(err.Error())
 	}
 
-	skills, err := db.Query("SELECT * FROM skills WHERE workerID = ?", workerID)
-	defer skills.Close()
+	result, err := db.Query("SELECT * FROM skills WHERE workerID = ?", workerID)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -62,18 +62,15 @@ func getWorkerSkillsFromDb(workerID string) []models.Skills {
 	}
 
 	var allSkills []models.Skills
+	var skills models.Skills
 
-	for skills.Next() {
-		var skill models.Skills
-		err = skills.Scan(&skill.WorkerID, &skill.SkillsName, &skill.PreferredAmount, &skill.Rating)
-
+	for result.Next() {
+		err := result.Scan(&skills.WorkerID, &skills.SkillsName, &skills.PreferredAmount, &skills.Rating)
 		if err != nil {
 			panic(err.Error())
 		}
-
-		allSkills = append(allSkills, skill)
+		allSkills = append(allSkills, skills)
 	}
-
 
 	return allSkills
 }
@@ -82,12 +79,11 @@ func getWorkerSkillsFromDb(workerID string) []models.Skills {
 func GetWorkerSkills(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// params := mux.Vars(r)
-	// workerID := params["workerID"]
+	params := mux.Vars(r)
+	workerID := params["workerID"]
 
-	workerID := r.URL.Query().Get("workerID")
-
-	allSkills := getWorkerSkillsFromDb(workerID)
+	var allSkills []models.Skills
+	allSkills = getWorkerSkillsFromDb(workerID)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(allSkills)
@@ -113,17 +109,23 @@ func UpdateSkills(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	var skills models.Skills
-	_ = json.NewDecoder(r.Body).Decode(&skills)
+	err := json.NewDecoder(r.Body).Decode(&skills)
+
+	if err != nil {
+		// set response header as forbidden
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
+	}
 
 	// get workerID and skillsName from url
-	workerID := r.URL.Query().Get("workerID")
-	skillsName := r.URL.Query().Get("skillsName")
+	params := mux.Vars(r)
+	workerID := params["workerID"]
+	skillsName := params["skillsName"]
 
 	// workerID and skillsName can not be updated
-	if workerID != skills.WorkerID || skillsName != skills.SkillsName {
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(map[string]string{"message": "workerID and skillsName can not be updated!"})
-		return
+	if skills.WorkerID != workerID || skills.SkillsName != skillsName {
+		w.WriteHeader(http.StatusForbidden)
+		json.NewEncoder(w).Encode(map[string]string{"message": "Invalid request!"})
 	}
 
 	if updateSkillsInDb(skills) {
@@ -155,8 +157,9 @@ func DeleteSkills(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// get workerID and skillsName from url
-	workerID := r.URL.Query().Get("workerID")
-	skillsName := r.URL.Query().Get("skillsName")
+	params := mux.Vars(r)
+	workerID := params["workerID"]
+	skillsName := params["skillsName"]
 
 	if deleteSkillsFromDb(workerID, skillsName) {
 		w.WriteHeader(http.StatusOK)
