@@ -1,6 +1,7 @@
 const express = require("express");
 const authRoutes = require("../modules/auth/auth.route");
 const userRoutes = require("../modules/user/user.route");
+const expertRoutes = require("../modules/expert/expert.route");
 
 const routes = express.Router();
 
@@ -12,6 +13,10 @@ const moduleRoutes = [
   {
     path: "/users",
     route: userRoutes,
+  },
+  {
+    path: "/expert",
+    route: expertRoutes,
   },
 ];
 
