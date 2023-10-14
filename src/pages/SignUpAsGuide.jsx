@@ -68,18 +68,32 @@ const SignUpAsUser = () => {
   const districts = ["District 1", "District 2", "District 64"];
 
   return (
-    <div className="flex items-center justify-center">
-      <div class="container flex">
+    <div
+      className="flex items-center justify-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="container flex" style={{ height: "100%" }}>
         <div
-          className="w-1/2 flex items-center justify-center"
+          className="w-1/2 flex items-center justify-center overscroll-none"
           style={{
-            overflow: "hidden",
+            position: "fixed",
+            left: 0,
+            height: "100vh",
+            backgroundColor: "#6f7880   ",
           }}
         >
           <img src={SignupSvg} alt="" width={400} />
         </div>
-        <div class="w-1/2 bg-gray-100 p-4 flex flex-col items-center justify-center">
-          <Title level={2} class="mb-4">
+        <div
+          className="w-1/2 bg-gray-100 p-4 flex flex-col items-center justify-center"
+          style={{
+            overflowY: "auto",
+
+            padding: "20px",
+            marginLeft: "50%",
+          }}
+        >
+          <Title style={{ marginBottom: 30 }} level={2}>
             Apply as a guide
           </Title>
 
