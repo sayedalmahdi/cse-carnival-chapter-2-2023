@@ -154,3 +154,22 @@ a
   font-size: 24px
   align-self: flex-start
   margin-left: 25px
+.your-button-style
+  position: absolute
+  top: 75%
+  left: 50%
+  width: 200px
+  height: 50px
+  background-color: #2f2e41
+  color: white
+  padding: 10px
+  border: none
+  border-radius: 5px
+  transition: transform 0.3s ease // Adds a smooth transition effect to the transform property
+
+  // Center the button using transform and translate
+  transform: translate(-50%, -50%)
+
+  &:hover
+    
+    transform: translate(-50%, -50%) scale(1.1) // Scale the button to 110% of its original size when hovered
