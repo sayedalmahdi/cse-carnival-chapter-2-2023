@@ -46,7 +46,11 @@ function App() {
 				});
 			} else {
 				action({ type: SET_USER, payload: { user: null } });
-				navigate("/");
+				let flag = false
+				PUBLIC_ROUTES.forEach((route) => {
+					if (route.path === location.pathname) flag = true
+				});
+				if (!flag) navigate("/");
 			}
 			setLoading(false);
 		});

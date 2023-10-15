@@ -88,7 +88,7 @@ const SignUpTourist = ({ isModalOpen, setIsModalOpen }) => {
   };
   const navigate = useNavigate();
   const handleGuide = () => {
-    navigate("/signupAsGuide");
+    navigate("/guide/signup");
   };
 
   return (
