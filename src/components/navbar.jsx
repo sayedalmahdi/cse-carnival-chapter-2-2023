@@ -14,6 +14,7 @@ import { Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import Reports from "./Reports";
 const { Title, Text } = Typography;
 
 const TopNavbar = () => {
@@ -112,7 +113,8 @@ const CombinedNavbar = () => {
               <Approval />
             </div>
           )}
-          {selectedMenuItem === "sub4" && <div>Display Reports Here</div>}
+          {selectedMenuItem === "sub4" &&  <div className="flex-1"><Reports/>
+          </div>}
         </div>
       </div>
     </div>

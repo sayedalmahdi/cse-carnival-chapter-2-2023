@@ -8,8 +8,9 @@ import { auth, db } from "../firebase";
 import { useEffect } from "react";
 import { Typography } from "antd";
 const { Title, Text } = Typography;
-import {  WechatOutlined } from "@ant-design/icons";
+import {  LogoutOutlined, WechatOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 const GuideList = () => {
   const [guides, setGuides] = useState([]);
   const navigate = useNavigate()
@@ -57,6 +58,7 @@ const GuideList = () => {
               }}
             >
               <Button className="rounded-button" onClick={() => navigate("/tourist/chat")} icon={<WechatOutlined />}>Go To Chat</Button>
+              <Button onClick={() => signOut(auth)} icon = {<LogoutOutlined/>} />
             </div>
           </nav>
           <Content style={{ padding: "40px" }}>

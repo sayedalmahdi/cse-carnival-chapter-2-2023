@@ -7,6 +7,7 @@ import { useStateValue } from "../state/StateProvider";
 import { Menu } from "antd";
 import Spinner from "../utils/Spinner";
 import { signOut } from "firebase/auth";
+import { message } from "antd";
 
 const { Sider, Content } = Layout;
 
@@ -113,9 +114,19 @@ const ChatUI = () => {
 		user.role === "tourist"
 			? await setDoc(ref, { touristRating: i }, { merge: true })
 			: await setDoc(ref, { guideRating: i }, { merge: true });
+
+		message.success("Rated successfully!");
 	};
 
 	console.log(user.id);
+
+	const handleReport = async () => {
+		const ref = doc(db, "chat", `${gcv(selectedConversation).tourist}_${gcv(selectedConversation).guide}`);
+
+		await setDoc(ref, { isActive: false, isReported: true }, { merge: true });
+
+		message.info("Reported successfully!");
+	}
 
 	return (
 		<Layout hasSider style={{ height: "100vh" }}>
@@ -216,25 +227,31 @@ const ChatUI = () => {
 					)}
 				</Content>
 				{gcv(selectedConversation)?.isActive ? (
-					<div className='mx-auto pb-3'>
-						<Button onClick={handleEnd} type='primary' danger>
-							End Chat
-						</Button>
+					<div className='flex mx-auto gap-2'>
+						<div className=' pb-3'>
+							<Button onClick={handleEnd} type='primary' danger>
+								End Chat
+							</Button>
+						</div>
+						{!gcv(selectedConversation)?.isReported && <Button onClick={handleReport}>Report This Chat</Button>}
 					</div>
 				) : (
-					<div className='mx-auto pb-10'>
-						{Array.from(Array(5).keys()).map((i) => (
-							<StarFilled
-								onClick={() => handleRating(i)}
-								key={i}
-								className={`text-lg  ${
-									gcv(selectedConversation)?.[`${user.role}Rating`] &&
-									gcv(selectedConversation)?.[`${user.role}Rating`] >= i
-										? "text-yellow-500"
-										: "fill-transparent"
-								}`}
-							/>
-						))}
+					<div className='flex flex-col mx-auto pb-5 gap-2 items-center justify-center'>
+						<div>
+							{Array.from(Array(5).keys()).map((i) => (
+								<StarFilled
+									onClick={() => handleRating(i)}
+									key={i}
+									className={`text-lg  ${
+										gcv(selectedConversation)?.[`${user.role}Rating`] &&
+										gcv(selectedConversation)?.[`${user.role}Rating`] >= i
+											? "text-yellow-500"
+											: "fill-transparent"
+									}`}
+								/>
+							))}
+						</div>
+						{!gcv(selectedConversation)?.isReported && <Button onClick={handleReport}>Report This Chat</Button>}
 					</div>
 				)}
 			</Layout>
