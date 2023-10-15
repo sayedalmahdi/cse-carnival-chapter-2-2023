@@ -59,23 +59,23 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
-                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
+                                <input id="name" type="text" minlength="4" autocomplete="off" class="input-field" required>
                                 <label>Name</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="email" minlength="4" autocomplete="off" class="input-field" required>
+                                <input id="email" type="email" minlength="4" autocomplete="off" class="input-field" required>
                                 <label>Email</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="number" minlength="10" autocomplete="off" class="input-field" required>
+                                <input id="contactNo" type="number" minlength="10" autocomplete="off" class="input-field" required>
                                 <label>Contact No.</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="text" minlength="4" autocomplete="off" class="input-field" required>
+                                <input id="nidNo" type="text" minlength="4" autocomplete="off" class="input-field" required>
                                 <label>NID No.</label>
                             </div>
                             <div class="input-wrap">
-                                <select class="input-field">
+                                <select class="input-field" id="selectRole">
                                     <option> </option>
                                     <option>Customer</option>
                                     <option>Worker</option>
@@ -83,11 +83,11 @@
                                 <label>Registered as</label>
                             </div>
                             <div class="input-wrap">
-                                <input type="password" minlength="4" autocomplete="off" class="input-field" required>
+                                <input id="password" type="password" minlength="4" autocomplete="off" class="input-field" required>
                                 <label>Password</label>
                             </div>
 
-                            <input type="submit" value="Sign Up" class="sign-btn">
+                            <input type="submit" value="Sign Up" class="sign-btn" onclick="userRegistration()">
 
                             <p class="text">
                                 By signing up, I agree to the <a href="#">Terms of Services</a> and <a>Privacy Policy</a>
