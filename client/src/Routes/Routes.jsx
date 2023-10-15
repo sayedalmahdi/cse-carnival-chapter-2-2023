@@ -16,6 +16,8 @@ import SetAppointment from "../pages/Dashboard/SetAppointment/SetAppointment";
 import Consultant from "../pages/Dashboard/Consultant/Consultant";
 import Consultee from "../pages/Dashboard/Consultee/Consultee";
 import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
+import Expert from "../pages/Home/Expert/Expert";
+import Testomonial from "../pages/Home/Testomonial/Testomonial";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: 'expert',
+                element: <Expert />
+            },
+            {
+                path: 'testomonial',
+                element: <Testomonial />
             }
         ]
     },
