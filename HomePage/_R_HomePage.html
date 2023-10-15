@@ -11,31 +11,31 @@
 <body>
     <div class="background"></div>
     <div class="allElements">
-        <div class="searchBox">
+        <div class="searchBox" id="search">
             <input type="text" placeholder="Search...">
             <a href="#">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </a>
         </div>
-        <div class="boxElements" onclick="openForm()">
+        <div class="boxElements" id="addPost" onclick="openForm()">
             <p><b>Post</b></p>
             <a href="#">
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
-        <div class="boxElements">
+        <div class="boxElements" id="profile" onclick="toProfile()">
             <p><b>Profile</b></p>
             <a href="#">
                 <i class="fa-solid fa-user"></i>
             </a>
         </div>
-        <div class="boxElements">
+        <div class="boxElements" id="premium" onclick="toPremium()">
             <p><b>Premium</b></p>
             <a href="#">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
             </a>
         </div>
-        <div class="boxElements">
+        <div class="boxElements" id="logout" onclick="toSignInPage()">
             <p><b>Logout</b></p>
             <a href="#">
                 <i class="fa-solid fa-right-from-bracket"></i>
