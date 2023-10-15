@@ -6,8 +6,8 @@ import p03 from "../../../assets/professional/3.jpg"
 const Testomonial = () => {
     return (
         <>
-            <h2 className='text-center text-6xl mt-5 mb-5 p-3'>Testomonial</h2>
-            <div className='flex mt-3'>
+            <h2 className='text-center text-6xl mt-5 mb-5 p-3 '>Testomonial</h2>
+            <div className='flex mt-3 justify-center'>
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <figure className="px-10 pt-10">
                         <img src={p01} alt="P1" className="rounded-xl" />

@@ -1,14 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import logo from '../../../../public/logo.png'
+import Profile from '../Profile/Profile';
+import Appointment from '../Appointment/Appointment';
+import Payment from '../Payment/Payment';
+import Settings from '../Settings/Settings';
+import SetAppointment from '../SetAppointment/SetAppointment';
+import Consultant from '../Consultant/Consultant';
+import Consultee from '../Consultee/Consultee';
 
 
 const DashboardMenu = () => {
+
+
+    const handleDashboardMenu = location.pathname.includes('profile') || location.pathname.includes('appointment') || location.pathname.includes('payment') || location.pathname.includes('settings') || location.pathname.includes('setAppointment') || location.pathname.includes('consultant') || location.pathname.includes('consultee');
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center">
+            <div className="drawer-content flex flex-col items-center p-20">
                 {/* Page content here */}
+                <Outlet/>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>

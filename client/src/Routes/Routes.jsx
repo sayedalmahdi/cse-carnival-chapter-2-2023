@@ -15,6 +15,7 @@ import Settings from "../pages/Dashboard/Settings/Settings";
 import SetAppointment from "../pages/Dashboard/SetAppointment/SetAppointment";
 import Consultant from "../pages/Dashboard/Consultant/Consultant";
 import Consultee from "../pages/Dashboard/Consultee/Consultee";
+import AdminDashboard from "../pages/AdminDashboard/AdminDashboard";
 import Expert from "../pages/Home/Expert/Expert";
 import Testomonial from "../pages/Home/Testomonial/Testomonial";
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
                 element: <Testomonial />
             }
         ]
+    },
+    {
+        path: 'adminDashboard',
+        element: <AdminDashboard />
     },
     {
         path: 'dashboardMenu',
