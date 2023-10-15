@@ -1,7 +1,7 @@
-.banner{
+.banner {
     background-image: url('../../../assets/banner.png');
     background-repeat: no-repeat;
-    height: 70vh;
+    height: 90vh;
     /* background-position: center; */
     background-size: cover;
 }
