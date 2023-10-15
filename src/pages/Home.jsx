@@ -13,6 +13,7 @@ import ChatUI from "./ChatUI";
 import Offering from "../components/offerings";
 import { Footer } from "antd/lib/layout/layout";
 import homeCover from "../assets/homepage2.svg"
+import ctaCover from "../assets/chatui.png";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
@@ -130,7 +131,7 @@ const Home = () => {
             <div className="relative w-48 p-12">
               <img
                 className="rounded-lg"
-                src="src\assets\chatui.png"
+                src={ctaCover}
                 width="700px"
                 height="auto"
                 alt=""
