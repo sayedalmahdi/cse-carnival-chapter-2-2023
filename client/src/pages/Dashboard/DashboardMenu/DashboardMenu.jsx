@@ -8,6 +8,7 @@ import Settings from '../Settings/Settings';
 import SetAppointment from '../SetAppointment/SetAppointment';
 import Consultant from '../Consultant/Consultant';
 import Consultee from '../Consultee/Consultee';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
 
 
 const DashboardMenu = () => {
@@ -20,7 +21,7 @@ const DashboardMenu = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col items-center p-20">
                 {/* Page content here */}
-                <Outlet/>
+                <Outlet />
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
@@ -35,6 +36,7 @@ const DashboardMenu = () => {
                     <li className='hover:bg-primary text-xl font-semibold duration-500 rounded-md'><Link to='/dashboardMenu/appointment'>Appointment</Link></li>
                     <li className='hover:bg-primary text-xl font-semibold duration-500 rounded-md'><Link to='/dashboardMenu/payment'>Payment</Link></li>
                     <li className='hover:bg-primary text-xl font-semibold duration-500 rounded-md'><Link to='/dashboardMenu/settings'>Settings</Link></li>
+                    <li className='hover:bg-primary text-xl font-semibold duration-500 rounded-md'><Link to='/dashboardMenu/makeAdmin'>Make Admin</Link></li>
                     <li className='hover:bg-primary text-xl font-semibold duration-500 rounded-md'><Link to='/dashboardMenu/setAppointment'>Set Appointment</Link></li>
                     <li>
                         <details open>
