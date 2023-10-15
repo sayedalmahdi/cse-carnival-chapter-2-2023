@@ -7,7 +7,29 @@ const images = document.querySelectorAll(".image");
 
 const styleForm = document.getElementById("styleForm");
 
+const search = document.getElementById("search");
+const addPost = document.getElementById("addPost");
+const profile = document.getElementById("profile");
+const premium = document.getElementById("premium");
+const logout = document.getElementById("logout");
+
 let slideIndex = 0;
+
+function onPageLoading(){
+    const isWorker = localStorage.getItem("isWorker");
+    if(isWorker == "true"){
+        search.style.display = "none";
+        premium.style.display = "none";
+    }
+}
+
+function toProfile(){
+    
+}
+
+function toPremium(){
+    window.location.href = "../subscription/_f_subscription.html";
+}
 
 inputs.forEach(inp =>{
     inp.addEventListener("focus",()=>{
