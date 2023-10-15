@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Layout, Input, Button, List } from "antd";
 import { ArrowLeftOutlined, LogoutOutlined, SendOutlined, StarFilled } from "@ant-design/icons";
-import { collection, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
+import { collection, doc, getDocs, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useStateValue } from "../state/StateProvider";
 import { Menu } from "antd";
@@ -52,8 +52,10 @@ const ChatUI = () => {
 			"messages"
 		);
 
+		const q = query(collectionRef, orderBy("time", "desc"));
+
 		// Call the onSnapshot() method.
-		onSnapshot(collectionRef, (querySnapshot) => {
+		onSnapshot(q, (querySnapshot) => {
 			const messageList = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 			setMessages(messageList.reverse());
 		});

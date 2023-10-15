@@ -21,7 +21,7 @@ export const PUBLIC_ROUTES = [
 
 export const TOURIST_ROUTES = [
 	{ path: "/tourist/guides", element: GuideList },
-	{ path: "/tourist/chatUI", element: ChatUI },
+	{ path: "/tourist/chat", element: ChatUI },
 ];
 
 export const GUIDE_ROUTES = [{ path: "/guide/chat", element: ChatUI }];

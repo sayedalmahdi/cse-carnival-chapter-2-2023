@@ -12,7 +12,7 @@ const stripe = require("stripe")(
 admin.initializeApp();
 const db = admin.firestore();
 
-const SITE_URL = "https://www.google.com";
+const SITE_URL = "https://goto-tour.web.app/";
 
 exports.createPaymentSession = functions.https.onCall(async (data, ctx) => {
 	const userData = await getUser(ctx);
@@ -38,8 +38,8 @@ exports.createPaymentSession = functions.https.onCall(async (data, ctx) => {
 		},
 		client_reference_id: userData._id,
 		mode: "payment",
-		success_url: `${SITE_URL}/tourist/payment?success=true&session_id={CHECKOUT_SESSION_ID}`,
-		cancel_url: `${SITE_URL}/tourist/payment?canceled=true`,
+		success_url: `${SITE_URL}/tourist/chat`,
+		cancel_url: `${SITE_URL}/tourist/guides`,
 	};
 
 	if (userData.email) req.customer_email = userData.email;
