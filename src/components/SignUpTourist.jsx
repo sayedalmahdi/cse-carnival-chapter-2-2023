@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal, Form, Input, Checkbox, message } from "antd";
-import { GoogleOutlined } from "@ant-design/icons";
+import {  LoginOutlined, UserAddOutlined } from "@ant-design/icons";
 import { auth } from "../firebase";
 import { db } from "../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -10,8 +10,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import SignUpAsUser from "../pages/SignUpAsGuide";
-import { Navigate } from "react-router-dom";
+import googleIcon from "../assets/google.svg";
+
 const SignUpTourist = ({ isModalOpen, setIsModalOpen }) => {
   const onFinish = async (values) => {
     try {
@@ -190,38 +190,30 @@ const SignUpTourist = ({ isModalOpen, setIsModalOpen }) => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button icon = {<LoginOutlined/>} type="primary" htmlType="submit" block>
               Sign Up
             </Button>
           </Form.Item>
         </Form>
-        <div className="flex flex-col gap-3" style={{ marginTop: 16, textAlign: "center" }}>
+        <div className="flex flex-col" style={{ textAlign: "center" }}>
           <Button
-            icon={<GoogleOutlined />}
-            style={{ background: "white", border: "1px solid #ccc" }}
+            style={{display: "flex", alignItems: "center", justifyContent: "center",  background: "white", border: "1px solid #ccc" }}
             block
             onClick={() => {
               handleGoogleSignup();
             }}
           >
+            <img src={googleIcon} alt="Google" style={{ marginRight: 8 }} />
             Sign Up with Google
           </Button>
-          <div className="font-bold">Want to earn money as Consultant?</div>
+          <div className="font-bold mt-8 mb-3">Want to earn money as Consultant?</div>
           <Button
-
-            style={{
-              background: "white",
-              border: "1px solid #ccc",
-            }}
+            icon = {<UserAddOutlined />}
+            type="primary"
+            danger
             block
             onClick={handleGuide}
           >
-            <img
-            className="w-4"
-              src="src/assets/tour-guide.png"
-              alt="Tour Guide"
-              style={{ marginRight: 8 }}
-            />
             Sign up as Guide
           </Button>
         </div>

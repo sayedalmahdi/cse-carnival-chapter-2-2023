@@ -6,14 +6,24 @@ import { Modal } from "antd";
 import { useState } from "react";
 import { Checkbox, Form } from "antd";
 import SignUpTourist from "../components/SignUpTourist";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { message } from "antd";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
+  const onFinish = async (values) => {
+		try {
+			const auth = getAuth();
+			await signInWithEmailAndPassword(auth, values.email, values.password);
+			message.success("Login successful!");
+			handleCancel();
+		} catch (error) {
+			console.error("Error signing in: ", error);
+			message.error("Error signing in.");
+		}
+	};
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };

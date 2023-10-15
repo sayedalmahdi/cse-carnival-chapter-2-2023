@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.sass";
 import Layout from "./components/Layout";
 import Spinner from "./utils/Spinner";
-import ProtectedRoutes from "./protected.routes";
+import { AdminRoutes, GuideRoutes, TouristRoutes } from "./protected.routes";
 import PublicRoutes from "./public.routes";
 import { useStateValue } from "./state/StateProvider";
 import { SET_USER } from "./state/Constants";
@@ -10,7 +10,7 @@ import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { PROTECTED_ROUTES } from "./routes";
+import { PUBLIC_ROUTES } from "./routes";
 import { signOut } from "firebase/auth";
 
 function App() {
@@ -26,15 +26,27 @@ function App() {
 				const snapshot = await getDoc(doc(db, "users", userCredenetials.uid));
 				const userData = { id: snapshot.id, ...snapshot.data() };
 				action({ type: SET_USER, payload: { user: userData } });
-				if (location.pathname === "/login" || location.pathname === "/") {
-					if (userData.role === "guide") navigate("/chat");
-					else if (userData.role === "tourist") navigate("/guides");
-				}
+				PUBLIC_ROUTES.forEach((route) => {
+					if (route.path === location.pathname) {
+						switch (userData.role) {
+							case "tourist":
+								navigate("/tourist/guides");
+								break;
+							case "guide":
+								navigate("/guide/chat");
+								break;
+							case "admin":
+								navigate("/admin");
+								break;
+							default:
+								navigate("/");
+								break;
+						}
+					}
+				});
 			} else {
 				action({ type: SET_USER, payload: { user: null } });
-				PROTECTED_ROUTES.forEach((route) => {
-					if (route.path === location.pathname) navigate("/");
-				});
+				navigate("/");
 			}
 			setLoading(false);
 		});
@@ -48,7 +60,9 @@ function App() {
 				<Spinner />
 			) : (
 				<>
-					{user && <ProtectedRoutes />}
+					{user && user.role === "guide" && <GuideRoutes />}
+					{user && user.role === "tourist" && <TouristRoutes />}
+					{user && user.role === "admin" && <AdminRoutes />}
 					<PublicRoutes />
 				</>
 			)}

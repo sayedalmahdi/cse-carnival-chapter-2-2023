@@ -1,14 +1,15 @@
-import { Layout, Space } from "antd";
+import { Button, Layout, Space } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
 import { Card, Col, Row } from "antd";
 import CustomCard from "../components/CustomCard";
 import { useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { useEffect } from "react";
 import { Typography } from "antd";
 const { Title, Text } = Typography;
-import { UserOutlined } from "@ant-design/icons";
+import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { signOut } from "firebase/auth";
 const GuideList = () => {
   const [guides, setGuides] = useState([]);
 
@@ -54,21 +55,7 @@ const GuideList = () => {
                 marginLeft: "auto",
               }}
             >
-              <Text
-                style={{
-                  fontSize: "18px",
-                  color: "#AEDFFA",
-                  marginRight: "5px",
-                }}
-              >
-                User
-              </Text>
-              <UserOutlined
-                style={{
-                  marginLeft: "5px",
-                  marginRight: "5px",
-                }}
-              />
+              <Button className="rounded-button" onClick={() => signOut(auth)} icon={<LogoutOutlined/>}>Logout</Button>
             </div>
           </nav>
           <Content style={{ padding: "40px" }}>

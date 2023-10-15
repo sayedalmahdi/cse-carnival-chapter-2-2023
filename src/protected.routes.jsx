@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Spinner from "./utils/Spinner";
-import { PROTECTED_ROUTES } from "./routes";
+import { ADMIN_ROUTES, GUIDE_ROUTES, TOURIST_ROUTES } from "./routes";
 
-const ProtectedRoutes = () => {
+export const TouristRoutes = () => {
 	return (
 		<Suspense fallback={<Spinner />}>
 			<Routes>
-				{PROTECTED_ROUTES.map((route, index) => (
+				{TOURIST_ROUTES.map((route, index) => (
 					<Route key={index} path={route.path} Component={route.element} />
 				))}
 			</Routes>
@@ -15,4 +15,26 @@ const ProtectedRoutes = () => {
 	);
 };
 
-export default ProtectedRoutes;
+export const GuideRoutes = () => {
+	return (
+		<Suspense fallback={<Spinner />}>
+			<Routes>
+				{GUIDE_ROUTES.map((route, index) => (
+					<Route key={index} path={route.path} Component={route.element} />
+				))}
+			</Routes>
+		</Suspense>
+	);
+};
+
+export const AdminRoutes = () => {
+	return (
+		<Suspense fallback={<Spinner />}>
+			<Routes>
+				{ADMIN_ROUTES.map((route, index) => (
+					<Route key={index} path={route.path} Component={route.element} />
+				))}
+			</Routes>
+		</Suspense>
+	);
+};

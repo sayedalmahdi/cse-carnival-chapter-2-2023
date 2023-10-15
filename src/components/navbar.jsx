@@ -2,15 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   AppstoreOutlined,
+  LogoutOutlined,
   MailOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 import { useState } from "react";
 import Guides from "./guideList";
 import Approval from "./Approval";
 import { Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 const { Title, Text } = Typography;
 
 const TopNavbar = () => {
@@ -35,21 +38,7 @@ const TopNavbar = () => {
           marginLeft: "auto",
         }}
       >
-        <Text
-          style={{
-            fontSize: "18px",
-            color: "#AEDFFA",
-            marginRight: "5px",
-          }}
-        >
-          User
-        </Text>
-        <UserOutlined
-          style={{
-            marginLeft: "5px",
-            marginRight: "5px",
-          }}
-        />
+         <Button className="rounded-button" onClick={() => signOut(auth)} icon={<LogoutOutlined/>}>Logout</Button>
       </div>
     </nav>
   );

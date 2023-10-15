@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Layout, Input, Button, List } from "antd";
-import { ArrowLeftOutlined, SendOutlined, StarFilled } from "@ant-design/icons";
+import { ArrowLeftOutlined, LogoutOutlined, SendOutlined, StarFilled } from "@ant-design/icons";
 import { collection, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { useStateValue } from "../state/StateProvider";
 import { Menu } from "antd";
 import Spinner from "../utils/Spinner";
+import { signOut } from "firebase/auth";
 
 const { Sider, Content } = Layout;
 
@@ -127,7 +128,7 @@ const ChatUI = () => {
 					bottom: 0,
 				}}
 			>
-				<div className='header flex pb-4 mt-4'>
+				<div className='flex pb-4 mt-4'>
 					<ArrowLeftOutlined style={{ marginLeft: "5px", marginRight: 8, color: "white" }} />
 					<span style={{ fontSize: 16, color: "white" }}>Go Back</span>
 				</div>
@@ -235,6 +236,15 @@ const ChatUI = () => {
 					</div>
 				)}
 			</Layout>
+			<Button
+				onClick={() => signOut(auth)}
+				icon={<LogoutOutlined />}
+				style={{ position: "absolute", bottom: "20px", left: "40px" }}
+				type='primary'
+				danger
+			>
+				Logout
+			</Button>
 		</Layout>
 	);
 };

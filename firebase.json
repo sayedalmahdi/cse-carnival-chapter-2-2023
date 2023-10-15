@@ -16,7 +16,8 @@
     }
   ],
   "hosting": {
-    "public": "build",
+    "site": "goto-tour",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
