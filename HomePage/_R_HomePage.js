@@ -24,7 +24,7 @@ function onPageLoading(){
 }
 
 function toProfile(){
-    
+    window.location.href = "../profile/_H_profile.html";
 }
 
 function toPremium(){
