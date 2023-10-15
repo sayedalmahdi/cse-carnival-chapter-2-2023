@@ -10,10 +10,24 @@ import { useState } from "react";
 import Guides from "./guideList";
 import Approval from "./Approval";
 import { Typography } from "antd";
+import { Button } from "antd";
+import { Modal } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import ProfileModal from "./ProfileModal";
+
 const { Title, Text } = Typography;
 
 const TopNavbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <nav
       className="p-3 shadow"
@@ -29,28 +43,19 @@ const TopNavbar = () => {
         GoTo
       </Title>
       <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginLeft: "auto",
-        }}
+        style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
       >
         <Text
-          style={{
-            fontSize: "18px",
-            color: "#AEDFFA",
-            marginRight: "5px",
-          }}
+          style={{ fontSize: "18px", color: "#AEDFFA", marginRight: "5px" }}
         >
           User
         </Text>
         <UserOutlined
-          style={{
-            marginLeft: "5px",
-            marginRight: "5px",
-          }}
+          onClick={showModal}
+          style={{ marginLeft: "5px", marginRight: "5px" }}
         />
       </div>
+      <ProfileModal visible={isModalOpen} onCancel={handleCancel} />
     </nav>
   );
 };
