@@ -23,6 +23,7 @@ const FavouriteService = () => {
             appoinmentTime: document.getElementById('localTime').value,
             message: document.getElementById('message').value,
             rate: user.rate
+            message: document.getElementById('message').value
         }
         fetch('http://localhost:5000/requestAppointment', {
         method: 'POST',
