@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="payment.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="form-popup relation" id="styleForm">
+        <i class="fa-regular fa-circle-xmark" onclick="closeForm()"></i>
+        <div class="form-box login">
+
+            <div class="form-content">
+                <h2>Payment</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <select>
+                            <option>Select payment option</option>
+                            <option>Bkash</option>
+                            <option>Nagad</option>
+                            <option>Rocket</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Account Number</label>
+                    </div>
+                    <div class="input-field">
+                        <label>Amount - 650TK</label>
+                    </div>
+                    <button type="submit">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="payment.js"></script>
+</body>
+</html>
