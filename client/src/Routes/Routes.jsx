@@ -15,62 +15,72 @@ import Settings from "../pages/Dashboard/Settings/Settings";
 import SetAppointment from "../pages/Dashboard/SetAppointment/SetAppointment";
 import Consultant from "../pages/Dashboard/Consultant/Consultant";
 import Consultee from "../pages/Dashboard/Consultee/Consultee";
+import Expert from "../pages/Home/Expert/Expert";
+import Testomonial from "../pages/Home/Testomonial/Testomonial";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
-        errorElement: <NotFound/>,
+        errorElement: <NotFound />,
         children: [
             {
                 path: 'login',
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: 'signup',
-                element: <Signup/>
+                element: <Signup />
             },
             {
                 path: 'forgetpassword',
-                element: <ForgetPassword/>
+                element: <ForgetPassword />
             },
             {
                 path: '/',
-                element: <Home/>
+                element: <Home />
+            },
+            {
+                path: 'expert',
+                element: <Expert />
+            },
+            {
+                path: 'testomonial',
+                element: <Testomonial />
             }
         ]
     },
     {
         path: 'dashboardMenu',
-        element: <DashboardMenu/>,
+        element: <DashboardMenu />,
         children: [
             {
                 path: 'profile',
-                element: <Profile/>
+                element: <Profile />
             },
             {
                 path: 'appointment',
-                element: <Appointment/>
+                element: <Appointment />
             },
             {
                 path: 'payment',
-                element: <Payment/>
+                element: <Payment />
             },
             {
                 path: 'settings',
-                element: <Settings/>
+                element: <Settings />
             },
             {
                 path: 'setAppointment',
-                element: <SetAppointment/>
+                element: <SetAppointment />
             },
             {
                 path: 'consultant',
-                element: <Consultant/>
+                element: <Consultant />
             },
             {
                 path: 'consultee',
-                element: <Consultee/>
+                element: <Consultee />
             },
         ]
     }

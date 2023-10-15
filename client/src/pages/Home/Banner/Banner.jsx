@@ -7,7 +7,7 @@ const Banner = () => {
     return (
         <div className='banner '>
             <div className='w-1/3  p-12 space-y-10 max-w-screen-xl mx-auto text-center'>
-                <h1 className='mt-10'>
+                <h1 className='mt-10 '>
                     <span className='text-6xl font-semibold text-white'>We Are Here To</span>
                     <span className='text-7xl font-semibold text-primary'> Guide You Grow</span>
                     <span className='text-6xl font-semibold text-white'> With Our Experts</span>
