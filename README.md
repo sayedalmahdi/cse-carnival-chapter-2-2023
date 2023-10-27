@@ -14,7 +14,7 @@ In today's fast-paced world, accessing expert advice and consultation is crucial
 
 ## Instructions
 
-- [ ] Fork this repository
+- [x] Fork this repository
 - [ ] For each major feature create a **branch**
 - [ ] After completing each task create a **commit** and **push** it to your forked repository
 
